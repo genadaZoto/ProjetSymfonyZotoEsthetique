@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voici un apercu de vos service{% endblock %}
+
+{% block body %}
+
+
+
+
+<table>
+    {% for valeur in services %}
+    <tr><td>{{ valeur.nom }}</td>
+    <td>{{ valeur.prix }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

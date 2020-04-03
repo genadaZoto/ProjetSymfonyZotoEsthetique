@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+Bye Bye! See you soon...
+
+<form action ="{{ path("app_login") }}" method="POST">
+    <button>LogIn</button>
+</form>
+
+{% endblock %}
