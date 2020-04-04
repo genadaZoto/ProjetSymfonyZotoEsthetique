@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients{% endblock %}
+
+{% block body %}
+
+
+
+<h2>Voici un apercu de vos clients</h2>
+
+<form action="{{ path ('traitementClient_deleteEdit') }}" method="POST">
+<table>
+    <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Adresse</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Id Card</th>
+        <th>Commentaires</th>
+    </tr>
+    {% for valeur in clients %}
+   
+    <tr>
+        <td>{{ valeur.nom | capitalize }}</td>
+        <td>{{ valeur.prenom | capitalize}} </td>
+        <td>{{ valeur.adresse | capitalize}} </td>
+        <td>{{ valeur.contact | capitalize}} </td>
+        <td>{{ valeur.email | capitalize}} </td>
+        <td>{{ valeur.idCard | capitalize}} </td>
+        <td>{{ valeur.commentaires | capitalize}} </td>
+        <td><button type="submit" name="delete" value="{{ valeur.id }}">Delete</button></td>
+        <td><button type="submit" name="edit" value="{{ valeur.id }}">Edit</button></td>
+    </tr>
+ 
+    {% endfor %}
+</table>
+</form>
+{% endblock %}

@@ -33,7 +33,7 @@ class ServiceController extends AbstractController
             $em->persist($service);
             $em->flush();
 
-            return $this->render('service/service_insert_traitement.html.twig');
+            return $this->redirectToRoute("service_afficher");
 
         }
         else{
