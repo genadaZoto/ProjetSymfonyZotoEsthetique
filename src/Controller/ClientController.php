@@ -80,8 +80,7 @@ class ClientController extends AbstractController
      * @Route("/client/edit", name="traitement_editClient")
      */
     public function clientEdit(Request $request){
-        
-      
+    
         $id =$request->request->get('id');
         $em = $this->getDoctrine()->getManager();
         $client = $em->getRepository(Client::class)->findOneBy(array("id"=>$id));

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prestations{% endblock %}
+
+{% block body %}
+
+
+
+<h2>Voici un apercu de vos prestations</h2>
+
+<form action="{{ path ('traitement_deleteEdit') }}" method="POST">
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Carte Bancaire</th>
+        <th>Prix Service</th>
+    </tr>
+    {% for valeur in prestations %}
+   
+    <tr>
+        <td>{{ valeur.datePrestation| date('d/m/Y') }}</td>
+        <td>{{ (valeur.carteBancaire == 1)? "Oui": "No" }}</td>
+        
+        <td><button type="submit" name="delete" value="{{ valeur.id }}">Delete</button></td>
+        <td><button type="submit" name="edit" value="{{ valeur.id }}">Edit</button></td>
+    </tr>
+ 
+    {% endfor %}
+</table>
+</form>
+{% endblock %}
