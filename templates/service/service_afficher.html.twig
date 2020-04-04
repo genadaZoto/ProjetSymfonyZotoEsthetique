@@ -19,8 +19,8 @@
     <tr>
         <td>{{ valeur.nom | capitalize }}</td>
         <td>{{ valeur.prix }} euro</td>
-        <td><button type="submit" name="delete" value="delete{{ valeur.id }}">Delete</button></td>
-        <td><button type="submit" name="edit" value="edit{{ valeur.id }}">Edit</button></td>
+        <td><button type="submit" name="delete" value="{{ valeur.id }}">Delete</button></td>
+        <td><button type="submit" name="edit" value="{{ valeur.id }}">Edit</button></td>
     </tr>
  
     {% endfor %}

@@ -61,26 +61,22 @@ class ServiceController extends AbstractController
      */
     public function serviceDelete(Request $request){
 
-        $buttonEdit = $request->request->get('edit');
-        $buttonDelete = $request->request->get('delete');
+        $valButtonEdit = $request->request->get('edit');
+        $valButtonDelete = $request->request->get('delete');
 
+        $id = $valButtonDelete | $valButtonEdit;
 
-        if($buttonDelete != null){
-            $id = substr($buttonDelete,6);
-            $em = $this->getDoctrine()->getManager();
-            $unService= $em->getRepository(Service::class)->findOneBy(array("id"=>$id));
-            $em->remove($unService);
+        $em = $this->getDoctrine()->getManager();
+        $service= $em->getRepository(Service::class)->findOneBy(array("id"=>$id));
+
+        if($valButtonDelete != null){
+                     
+            $em->remove($service);
             $em->flush();
             return $this->redirectToRoute("service_afficher");
 
         }else{
-            
-            $id = substr($buttonEdit,4);
-
-            $em = $this->getDoctrine()->getManager();
-            $service= $em->getRepository(Service::class)->findOneBy(array("id"=>$id));
             $vars= ['service'=>$service];
-
             return $this->render("service/service_edit.html.twig", $vars);
      
         }
@@ -98,7 +94,7 @@ class ServiceController extends AbstractController
         $service->setNom($request->request->get('nom'));
         $service->setPrix($request->request->get('prix'));
         $em->flush();
-        
+
         return $this->redirectToRoute("service_afficher");
     }
 }
