@@ -10,9 +10,9 @@
 
 <form action="{{ path ('traitement_editService') }}" method="POST">
 
-        <input name="nom" placeholder ="{{ service.nom }}">Nom Service</input>
-        <input name="prix" placeholder ="{{ service.prix }}">Prix Service</input>
-        <input type="hidden" name="id" value= "{{ service.id }}"></input>
+        <label>Nom Service</label><input name="nom" placeholder ="{{ service.nom }}"></input></br>
+        <label>Prix Service</label><input name="prix" placeholder ="{{ service.prix }}"></input></br>
+        <input type="hidden" name="id" value= "{{ service.id }}"></input></br>
         <button type="submit">Edit</button>
 
 </form>
