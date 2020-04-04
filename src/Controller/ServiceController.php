@@ -44,7 +44,7 @@ class ServiceController extends AbstractController
     }
 
     /**
-     * @Route("/service/afficher")
+     * @Route("/service/afficher", name="service_afficher")
      */
     public function serviceAfficher(){
         $em = $this->getDoctrine()->getManager();
@@ -54,5 +54,51 @@ class ServiceController extends AbstractController
 
         return $this->render("service/service_afficher.html.twig", $vars);
 
+    }
+
+    /**
+     * @Route("/service/delete", name="traitement_deleteEdit")
+     */
+    public function serviceDelete(Request $request){
+
+        $buttonEdit = $request->request->get('edit');
+        $buttonDelete = $request->request->get('delete');
+
+
+        if($buttonDelete != null){
+            $id = substr($buttonDelete,6);
+            $em = $this->getDoctrine()->getManager();
+            $unService= $em->getRepository(Service::class)->findOneBy(array("id"=>$id));
+            $em->remove($unService);
+            $em->flush();
+            return $this->redirectToRoute("service_afficher");
+
+        }else{
+            
+            $id = substr($buttonEdit,4);
+
+            $em = $this->getDoctrine()->getManager();
+            $service= $em->getRepository(Service::class)->findOneBy(array("id"=>$id));
+            $vars= ['service'=>$service];
+
+            return $this->render("service/service_edit.html.twig", $vars);
+     
+        }
+    }
+
+    /**
+     * @Route("/service/edit", name="traitement_editService")
+     */
+    public function serviceEdit(Request $request){
+
+    
+        $id = $request->request->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $service= $em->getRepository(Service::class)->findOneBy(array("id"=>$id));
+        $service->setNom($request->request->get('nom'));
+        $service->setPrix($request->request->get('prix'));
+        $em->flush();
+        
+        return $this->redirectToRoute("service_afficher");
     }
 }

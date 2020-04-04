@@ -7,11 +7,18 @@
     </head>
     <body>
         <ul>
-            <li><a href="default.asp">Home</a></li>
-            <li><a href="news.asp">News</a></li>
-            <li><a href="contact.asp">Contact</a></li>
-            <li><a href="about.asp">About</a></li>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/service/insert">Inserer Service</a></li>
+            <li><a href="/service/afficher">Afficher Service</a></li>
+            <li><a href="/client/insert">Inserer Client</a></li>
+            <li><a href="client/afficher">Afficher Client</a></li>
+            <li><a href="prestation/insert">Inserer Prestation</a></li>
+            <li><a href="prestation/afficher">Afficher Prestation</a></li>
+            
+
           </ul>
+          <hr>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

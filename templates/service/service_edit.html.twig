@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un service{% endblock %}
+
+{% block body %}
+
+
+
+<h2>Modifier un service</h2>
+
+<form action="{{ path ('traitement_editService') }}" method="POST">
+
+        <input name="nom" placeholder ="{{ service.nom }}">Nom Service</input>
+        <input name="prix" placeholder ="{{ service.prix }}">Prix Service</input>
+        <input type="hidden" name="id" value= "{{ service.id }}"></input>
+        <button type="submit">Edit</button>
+
+</form>
+{% endblock %}

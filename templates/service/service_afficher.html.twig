@@ -6,13 +6,24 @@
 
 
 
+<h2>Voici un apercu de vos services</h2>
 
+<form action="{{ path ('traitement_deleteEdit') }}" method="POST">
 <table>
-    {% for valeur in services %}
-    <tr><td>{{ valeur.nom }}</td>
-    <td>{{ valeur.prix }}</td>
+    <tr>
+        <th>Service</th>
+        <th>Prix</th>
     </tr>
+    {% for valeur in services %}
+   
+    <tr>
+        <td>{{ valeur.nom | capitalize }}</td>
+        <td>{{ valeur.prix }} euro</td>
+        <td><button type="submit" name="delete" value="delete{{ valeur.id }}">Delete</button></td>
+        <td><button type="submit" name="edit" value="edit{{ valeur.id }}">Edit</button></td>
+    </tr>
+ 
     {% endfor %}
 </table>
-
+</form>
 {% endblock %}
