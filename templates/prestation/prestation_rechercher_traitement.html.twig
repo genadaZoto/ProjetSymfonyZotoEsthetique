@@ -6,9 +6,9 @@
 
 
 
-<h2>Voici un apercu de vos prestations</h2>
+<h2>Resultat de la recherche</h2>
 
-<form action="{{ path ('traitementPrestation_deleteEdit') }}" method="POST">
+
 <table>
     <tr>
         <th>Date</th>
@@ -17,7 +17,7 @@
         <th>Carte Bancaire</th>
         <th>Prix Service</th>
     </tr>
-    {% for valeur in prestations %}
+    {% for valeur in prestation %}
    
     <tr>
         <td>{{ valeur.datePrestation| date('d/m/Y') }}</td>
@@ -25,11 +25,10 @@
         <td>{{ valeur.client.prenom | capitalize}}</td>
         <td>{{ (valeur.carteBancaire == 1)? "Oui": "No" }}</td>
         <td>{{ valeur.prixService}}</td>
-        <td><button type="submit" name="delete" value="{{ valeur.id }}">Delete</button></td>
-        <td><button type="submit" name="edit" value="{{ valeur.id }}">Edit</button></td>
     </tr>
- 
     {% endfor %}
 </table>
-</form>
+
+<div>Total {{ prix}} euro.</div>
+
 {% endblock %}

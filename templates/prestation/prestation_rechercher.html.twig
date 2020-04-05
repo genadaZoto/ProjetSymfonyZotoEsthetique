@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rechercher un prestation{% endblock %}
+
+{% block body %}
+
+
+
+<h2>Rechercher un prestation</h2>
+
+<form action="{{ path ('prestation_rechercherTraitement') }}" method="POST">
+
+        <label>Date debut</label><input required type="date" name="dateDebut"></input></br>
+        <label>Date fin</label><input required type="date" name="dateFin"></input></br>
+        <button type="submit">rechercher</button>
+</form>
+{% endblock %}

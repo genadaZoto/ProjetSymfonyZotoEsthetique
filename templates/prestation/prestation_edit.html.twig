@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un prestation{% endblock %}
+
+{% block body %}
+
+
+
+<h2>Modifier un prestation</h2>
+
+<form action="{{ path ('traitement_editPrestation') }}" method="POST">
+
+        <label>Date</label><input required name="datePrestation"  value="{{ prestation.datePrestation | date('d/m/Y')}}"></input></br>
+        <label>Carte Bancaire</label><input required name="carteBancaire" value ="{{ (prestation.carteBancaire == 1)? "Oui": "No" }}"></input></br>
+        <label>Prix Service</label><input required name="prixService" value ="{{ prestation.prixService}}"></input></br>
+       
+        
+        <input type="hidden" name="id" value= "{{ prestation.id }}"></input></br>
+        <button type="submit">Edit</button>
+
+</form>
+{% endblock %}
