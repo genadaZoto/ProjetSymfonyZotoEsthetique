@@ -10,25 +10,31 @@
 
 
 <table>
-    <tr>
+    <thead>
         <th>Date</th>
         <th>Service</th>
         <th>Client</th>
+        <th></th>
         <th>Carte Bancaire</th>
         <th>Prix Service</th>
-    </tr>
+    </thead>
     {% for valeur in prestation %}
-   
-    <tr>
+   <tbody>
+    
         <td>{{ valeur.datePrestation| date('d/m/Y') }}</td>
         <td>{{ valeur.service.nom | capitalize}}</td>
         <td>{{ valeur.client.prenom | capitalize}}</td>
+        <td>{{ valeur.client.nom | capitalize}}</td>
         <td>{{ (valeur.carteBancaire == 1)? "Oui": "No" }}</td>
         <td>{{ valeur.prixService}}</td>
     </tr>
+
+   </tbody>
+   
     {% endfor %}
 </table>
-
-<div>Total {{ prix}} euro.</div>
+<hr>
+<div>Nombre elements trouvé: {{ prestation|length }}</div>
+<div>Total: {{ prix}} euro.</div>
 
 {% endblock %}

@@ -120,8 +120,7 @@ class PrestationController extends AbstractController
         $prestation = $query->getResult();
 
         $prixTotal = 0;
-
-        //dd($prestation);
+        //je calcule le total pour la periode recherché
         foreach($prestation as $value ){
             $prixTotal += $value->getPrixService();
         }
