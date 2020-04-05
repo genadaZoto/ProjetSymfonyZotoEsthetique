@@ -43,11 +43,13 @@ class PrestationController extends AbstractController
      * @Route("/prestation/afficher", name="prestation_afficher")
      */
     public function prestationAfficher(){
+        
         $em = $this->getDoctrine()->getManager();
-        $prestationRepo = $em->getRepository(Prestation::class);
-        $prestation = $prestationRepo->findAll();
-        $vars = ['prestations'=>$prestation];
+       
+        $query = $em->createQuery ('SELECT prestation, service, client FROM App\Entity\Prestation prestation JOIN prestation.service service JOIN prestation.client client');
+        $prestation = $query->getResult();
 
+        $vars= ['prestations'=>$prestation];
         return $this->render("prestation/prestation_afficher.html.twig", $vars);
     }
 }
