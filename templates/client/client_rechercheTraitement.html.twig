@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Afficher client{% endblock %}
+
+{% block body %}
+
+
+
+<h2>Voici les informations sur le client recherché</h2>
+
+
+{% if client != null %}
+
+<div>Nom: {{ client[0].client.nom }}</div>
+<div>Prenom: {{ client[0].client.prenom }}</div>
+<div>Nom: {{ client[0].client.nom }}</div>
+<div>Adresse: {{ client[0].client.adresse }}</div>
+<div>Contact: {{ client[0].client.contact }}</div>
+<div>Email: {{ client[0].client.email }}</div>
+
+
+<form action="{{ path ('delete_photo') }}" method="POST">
+{% for valeur in client %}
+<img style="height: 250px;" src="{{ asset('/dossierFichiers/' ~ valeur.lienImage)}}" alt="avatar"></br>
+<span>{{ valeur.label }}</span></br>  
+<button type="submit" name="delete" value="{{ valeur.id }}">Delete</button></br>   
+{% endfor %}
+
+</form>
+{% endif %}
+
+
+{% if client == null %}
+<div>Vous ne pouvez pas voir les informations sur ce client dans cette page car il n'existe pas des photos a son nom.
+ Vous pouvez toujours aller dans la page Afficher Client pour avoir la liste complete des clients. Merci!</div>
+{% endif %}
+
+ {% endblock %}

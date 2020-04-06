@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Photo;
 use App\Entity\Client;
 use App\Form\ClientType;
+use App\Form\ClientPrenomType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -97,10 +99,50 @@ class ClientController extends AbstractController
         return $this->redirectToRoute("client_afficher");
 
     }
+    /**
+     * @Route("/client/recherche", name="client_recherche")
+     */
+    public function clientRecherche ()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $clients = $em->getRepository(Client::class)->findAll();
+        $vars = ["clients"=>$clients];
 
-  
+          return $this->render('client/client_recherche.html.twig', $vars);
 
+    }
 
+    /**
+     * @Route("/client/recherche/traitement", name="traitement_rechercheClient")
+     */
+    public function rechercheClientTraitement(Request $request)
+    {
+        $clientId = $request->request->get('clientId');
+        
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery ('SELECT photo,client FROM App\Entity\Photo photo JOIN photo.client client WHERE client.id = :input');
+        $query->setParameter('input', $clientId );
 
+        $client = $query->getResult();
+        $vars=['client'=>$client];
+        //dd($vars);
+        return $this->render('client/client_rechercheTraitement.html.twig', $vars);
+      
+    }
+    /**
+     * @Route("/client/delete/photo", name="delete_photo")
+     */
+    public function deletePhoto(Request $request)
+    {
+        $id = $request->request->get("delete");
+     
+        $em = $this->getDoctrine()->getManager();
+        $photo = $em->getRepository(Photo::class)->findOneBy(array("id"=>$id));
+       
+        $em->remove($photo);
+        $em->flush();
+        return $this->redirectToRoute("client_recherche");
+        
+    }
 
 }
