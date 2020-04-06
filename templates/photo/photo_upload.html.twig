@@ -1,0 +1,13 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Inserer un nouveau service!{% endblock %}
+
+{% block body %}
+
+{{ form_start (formulaire) }}
+{{ form_widget (formulaire) }}
+<input type="submit" value="Inserer">
+{{ form_end(formulaire) }}
+
+{% endblock %}

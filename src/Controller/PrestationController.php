@@ -114,7 +114,7 @@ class PrestationController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
        
-        $query = $em->createQuery ('SELECT prestation, service, client FROM App\Entity\Prestation prestation  JOIN prestation.service service JOIN prestation.client client WHERE prestation.datePrestation >= :dateDebut AND prestation.datePrestation <= :dateFin');
+        $query = $em->createQuery ('SELECT prestation, service, client FROM App\Entity\Prestation prestation  JOIN prestation.service service JOIN prestation.client client WHERE prestation.datePrestation >= :dateDebut AND prestation.datePrestation <= :dateFin ORDER BY prestation.datePrestation DESC');
         $query->setParameter('dateDebut', $dateDebut);
         $query->setParameter('dateFin', $dateFin);
         $prestation = $query->getResult();
@@ -130,5 +130,33 @@ class PrestationController extends AbstractController
 
         return $this->render("prestation/prestation_rechercher_traitement.html.twig", $vars);
 
+    }
+
+    /**
+     * @Route("/prestation/recherche/ajax")
+     */
+    public function prestationRechercheAjax()
+    {
+        return $this->render("/prestation/prestation_recherche_ajax.html.twig");
+
+    }
+
+    /**
+     * @Route("/prestation/recherche/traitement/ajax", name="rechercheTraitementAjax")
+     */
+    public function rechercheTraitementAjax(Request $request)
+    {
+        $dateDebut = $request->get('dateDebut');
+        $dateFin = $request->get('dateFin');
+        dd($request->getContent());
+        $em = $this->getDoctrine()->getManager();
+       
+        $query = $em->createQuery ('SELECT prestation, service, client FROM App\Entity\Prestation prestation  JOIN prestation.service service JOIN prestation.client client WHERE prestation.datePrestation >= :dateDebut AND prestation.datePrestation <= :dateFin');
+        $query->setParameter('dateDebut', $dateDebut);
+        $query->setParameter('dateFin', $dateFin);
+
+        $prestations = $query->getArrayResult();
+        dd($prestations);
+        return new JsonResponse($prestations);
     }
 }

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rechercher un prestation{% endblock %}
+
+{% block body %}
+
+<h2>Rechercher un prestation</h2>
+
+<form id="leFormulaire">
+
+        <label>Date debut</label><input required type="date" name="dateDebut"></input></br>
+        <label>Date fin</label><input required type="date" name="dateFin"></input></br>
+        <button id="btn_envoyer" type="submit">rechercher</button>
+</form>
+<div id="divMessage"></div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+btn_envoyer.addEventListener ("click", (event) => {
+    event.preventDefault ();
+
+    axios ({
+        url : '{{ path ("rechercheTraitementAjax") }}',
+        method : 'POST',
+        headers: {'Content-Type': 'multipart/form-data'},
+        data: new FormData(document.getElementById("leFormulaire"))
+    })
+    .then (function (response){
+        
+        let arrayPrestations = response.data;
+        console.log("toto");
+        divMessage.innerHTML = arrayPrestations[0].datePrestation;
+
+    })
+    .catch (function (error){
+        console.log (error);
+    });
+});
+</script>
+{% endblock %}
