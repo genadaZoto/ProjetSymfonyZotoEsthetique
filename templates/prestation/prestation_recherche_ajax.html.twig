@@ -12,7 +12,10 @@
         <label>Date fin</label><input required type="date" name="dateFin"></input></br>
         <button id="btn_envoyer" type="submit">rechercher</button>
 </form>
-<div id="divMessage"></div>
+<table id="table"></table>
+
+
+
 {% endblock %}
 
 {% block javascripts %}
@@ -26,13 +29,103 @@ btn_envoyer.addEventListener ("click", (event) => {
         url : '{{ path ("rechercheTraitementAjax") }}',
         method : 'POST',
         headers: {'Content-Type': 'multipart/form-data'},
-        data: new FormData(document.getElementById("leFormulaire"))
+        data: new FormData (leFormulaire)
     })
     .then (function (response){
         
         let arrayPrestations = response.data;
-        console.log("toto");
-        divMessage.innerHTML = arrayPrestations[0].datePrestation;
+
+  
+        const tableDates =[];
+        const tableService = [];
+        const tableClient =[];
+        const tableCBancaire = [];
+        const tablePrixService= [];
+
+        console.log(arrayPrestations);
+
+      for( el of arrayPrestations){
+          tableClient.push(el.client.nom);
+          tableCBancaire.push(el.carteBancaire);
+          tableService.push(el.service.nom);
+          tablePrixService.push(el.prixService);
+          tableDates.push(el.datePrestation);
+      }
+        
+        
+        const table = document.getElementById('table');
+        let tr1 = document.createElement('tr');
+        for(el of tableDates){
+            let td = document.createElement('td');
+            td.innerText = el.date.substring(0,10);
+            tr1.appendChild(td);  
+        }
+        table.appendChild(tr1);
+
+        let tr2 = document.createElement('tr');
+        for(el of tableCBancaire){
+            let cb = (el == true ? "Oui": "Non");
+            let td = document.createElement('td');
+            td.innerText = cb;
+            tr2.appendChild(td);
+           
+        }
+        table.appendChild(tr2);
+        
+
+        //2solution
+
+        function createRow (array )
+        {
+            let tr1 = document.createElement('tr');
+            for(el of array){
+            let td = document.createElement('td');
+            td.innerText = el;
+            tr1.appendChild(td);  
+        }
+        table.appendChild(tr1);
+        }
+
+        createRow(tableService);
+        createRow(tableClient);
+        createRow(tablePrixService);
+
+
+        // for(el of tableClient){
+        //     const tr = document.createElement('tr');
+        //     tr.innerText = el;
+        //     table.appendChild(tr);
+        // }
+        
+
+    //     const headerTable= ['Date', 'Service', 'Client', 'Carte Bancaire', 'Prix Service'];
+    //     const tr = document.createElement('tr');
+    //     const table = document.getElementById('table');
+    //     table.appendChild(tr);
+    //     for(const header of headerTable){
+    //         const td = document.createElement('td');
+    //         tr.appendChild(td);
+    //         td.innerText = header;
+    //     }
+
+    //    for(let i=0; i< arrayPrestations.length; i++){
+    //         let i = document.createElement('tr');
+    //         for(let j=0; j< headerTable.length; j++){
+    //             let j = document.createElement('td');
+    //             console.log(tableDates[0].date);
+    //             for(el of tableDates){
+                
+    //             j.innerText = el[j].date.substring(0,10);
+               
+    //     }
+    //             j.innerText = tableDates[j].date;
+    //             i.appendChild(j);          
+    //     }
+    //         table.appendChild(i);
+
+    //    }
+
+        
 
     })
     .catch (function (error){

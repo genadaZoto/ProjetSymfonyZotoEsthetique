@@ -20,7 +20,7 @@
     </thead>
     {% for valeur in prestation %}
    <tbody>
-    
+    <tr>
         <td>{{ valeur.datePrestation| date('d/m/Y') }}</td>
         <td>{{ valeur.service.nom | capitalize}}</td>
         <td>{{ valeur.client.prenom | capitalize}}</td>

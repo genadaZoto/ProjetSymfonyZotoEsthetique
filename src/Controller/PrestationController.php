@@ -6,6 +6,7 @@ use App\Entity\Prestation;
 use App\Form\PrestationType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PrestationController extends AbstractController
@@ -146,17 +147,17 @@ class PrestationController extends AbstractController
      */
     public function rechercheTraitementAjax(Request $request)
     {
-        $dateDebut = $request->get('dateDebut');
-        $dateFin = $request->get('dateFin');
-        dd($request->getContent());
+        $dateDebut = $request->request->get('dateDebut');
+        $dateFin = $request->request->get('dateFin');
+        
         $em = $this->getDoctrine()->getManager();
        
-        $query = $em->createQuery ('SELECT prestation, service, client FROM App\Entity\Prestation prestation  JOIN prestation.service service JOIN prestation.client client WHERE prestation.datePrestation >= :dateDebut AND prestation.datePrestation <= :dateFin');
+        $query = $em->createQuery ('SELECT prestation, service, client FROM App\Entity\Prestation prestation  JOIN prestation.service service JOIN prestation.client client WHERE prestation.datePrestation >= :dateDebut AND prestation.datePrestation <= :dateFin ORDER BY prestation.datePrestation DESC');
         $query->setParameter('dateDebut', $dateDebut);
         $query->setParameter('dateFin', $dateFin);
 
         $prestations = $query->getArrayResult();
-        dd($prestations);
+       
         return new JsonResponse($prestations);
     }
 }
