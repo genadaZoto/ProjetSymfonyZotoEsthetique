@@ -37,7 +37,7 @@ btn_envoyer.addEventListener ("click", (event) => {
         document.getElementById('contenu').innerHTML="";
   
 
-        const headerTable= ['Date Service', 'Nom Client', 'Service', 'Carte Bancaire', 'Prix Service'];
+        const headerTable= ['Date Service', 'Nom Client', 'Nom Service', 'Carte Bancaire', 'Prix Service'];
         let ulHeader = document.createElement('ul');
        
         
@@ -48,7 +48,7 @@ btn_envoyer.addEventListener ("click", (event) => {
             ulHeader.appendChild(li);
         }
         document.getElementById('contenu').appendChild(ulHeader);
-        ulHeader.classList.add("list-inline");
+        ulHeader.classList.add("list-header");
       
 
         function createLi(article){
@@ -64,8 +64,8 @@ btn_envoyer.addEventListener ("click", (event) => {
         let br = document.createElement("BR");
         ul.appendChild(br);
         createLi(arrayPrestations[i].datePrestation.date.substring(0,10));
-        createLi(arrayPrestations[i].client.prenom);
-        createLi(arrayPrestations[i].service.nom );
+        createLi(arrayPrestations[i].client.prenom.charAt(0).toUpperCase() + arrayPrestations[i].client.prenom.slice(1));
+        createLi(arrayPrestations[i].service.nom.charAt(0).toUpperCase() + arrayPrestations[i].service.nom.slice(1));
         createLi(arrayPrestations[i].carteBancaire === true ? "Oui":"Non");
         createLi(arrayPrestations[i].prixService);
         
