@@ -1,0 +1,14 @@
+.list-inline {
+    /* display: flex;
+    flex-direction: row; */
+    justify-content: center;
+    margin: 10px;
+}
+
+ul.list-inline {
+    padding-left: 10px;
+    list-style: none;
+}
+ul.list-inline li {
+    display: inline-block;
+}

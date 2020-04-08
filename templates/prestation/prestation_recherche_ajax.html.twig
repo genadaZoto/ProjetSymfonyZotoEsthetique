@@ -12,7 +12,7 @@
         <label>Date fin</label><input required type="date" name="dateFin"></input></br>
         <button id="btn_envoyer" type="submit">rechercher</button>
 </form>
-<table id="table"></table>
+<div id="contenu"></div>
 
 
 
@@ -34,99 +34,53 @@ btn_envoyer.addEventListener ("click", (event) => {
     .then (function (response){
         
         let arrayPrestations = response.data;
-
+        document.getElementById('contenu').innerHTML="";
   
-        const tableDates =[];
-        const tableService = [];
-        const tableClient =[];
-        const tableCBancaire = [];
-        const tablePrixService= [];
 
-        console.log(arrayPrestations);
+        const headerTable= ['Date Service', 'Nom Client', 'Service', 'Carte Bancaire', 'Prix Service'];
+        let ulHeader = document.createElement('ul');
+       
+        
+        for( el of headerTable){
+            let li= document.createElement('li');
+            li.innerText = el;
+            ulHeader.appendChild(li);
+            ulHeader.appendChild(li);
+        }
+        document.getElementById('contenu').appendChild(ulHeader);
+        ulHeader.classList.add("list-inline");
+      
 
-      for( el of arrayPrestations){
-          tableClient.push(el.client.nom);
-          tableCBancaire.push(el.carteBancaire);
-          tableService.push(el.service.nom);
-          tablePrixService.push(el.prixService);
-          tableDates.push(el.datePrestation);
+        function createLi(article){
+            let li= document.createElement('li');
+            li.innerText = article;
+            ul.appendChild(li);
+        }
+
+        
+      let ul = document.createElement('ul');
+      ul.classList.add("list-inline");
+      for(let i = 0; i< arrayPrestations.length; i++){
+        let br = document.createElement("BR");
+        ul.appendChild(br);
+        createLi(arrayPrestations[i].datePrestation.date.substring(0,10));
+        createLi(arrayPrestations[i].client.prenom);
+        createLi(arrayPrestations[i].service.nom );
+        createLi(arrayPrestations[i].carteBancaire === true ? "Oui":"Non");
+        createLi(arrayPrestations[i].prixService);
+        
       }
-        
-        
-        const table = document.getElementById('table');
-        let tr1 = document.createElement('tr');
-        for(el of tableDates){
-            let td = document.createElement('td');
-            td.innerText = el.date.substring(0,10);
-            tr1.appendChild(td);  
+      document.getElementById('contenu').appendChild(ul);
+
+
+       let total = 0;
+        for(el of arrayPrestations){
+           total += parseInt(el.prixService);
         }
-        table.appendChild(tr1);
-
-        let tr2 = document.createElement('tr');
-        for(el of tableCBancaire){
-            let cb = (el == true ? "Oui": "Non");
-            let td = document.createElement('td');
-            td.innerText = cb;
-            tr2.appendChild(td);
-           
-        }
-        table.appendChild(tr2);
+        let prixTotal = document.createElement('div');
+        prixTotal.innerText = "Le total pour cette periode est:    " + total + "euro.";
+        document.getElementById('contenu').appendChild(prixTotal);
         
-
-        //2solution
-
-        function createRow (array )
-        {
-            let tr1 = document.createElement('tr');
-            for(el of array){
-            let td = document.createElement('td');
-            td.innerText = el;
-            tr1.appendChild(td);  
-        }
-        table.appendChild(tr1);
-        }
-
-        createRow(tableService);
-        createRow(tableClient);
-        createRow(tablePrixService);
-
-
-        // for(el of tableClient){
-        //     const tr = document.createElement('tr');
-        //     tr.innerText = el;
-        //     table.appendChild(tr);
-        // }
-        
-
-    //     const headerTable= ['Date', 'Service', 'Client', 'Carte Bancaire', 'Prix Service'];
-    //     const tr = document.createElement('tr');
-    //     const table = document.getElementById('table');
-    //     table.appendChild(tr);
-    //     for(const header of headerTable){
-    //         const td = document.createElement('td');
-    //         tr.appendChild(td);
-    //         td.innerText = header;
-    //     }
-
-    //    for(let i=0; i< arrayPrestations.length; i++){
-    //         let i = document.createElement('tr');
-    //         for(let j=0; j< headerTable.length; j++){
-    //             let j = document.createElement('td');
-    //             console.log(tableDates[0].date);
-    //             for(el of tableDates){
-                
-    //             j.innerText = el[j].date.substring(0,10);
-               
-    //     }
-    //             j.innerText = tableDates[j].date;
-    //             i.appendChild(j);          
-    //     }
-    //         table.appendChild(i);
-
-    //    }
-
-        
-
     })
     .catch (function (error){
         console.log (error);
