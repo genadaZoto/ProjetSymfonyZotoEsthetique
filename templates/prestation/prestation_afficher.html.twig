@@ -24,7 +24,7 @@
         <td>{{ valeur.service.nom | capitalize}}</td>
         <td>{{ valeur.client.prenom | capitalize}}</td>
         <td>{{ (valeur.carteBancaire == 1)? "Oui": "No" }}</td>
-        <td>{{ valeur.prixService}}</td>
+        <td>{{ valeur.prixService}} €</td>
         <td><button type="submit" name="delete" value="{{ valeur.id }}">Delete</button></td>
         <td><button type="submit" name="edit" value="{{ valeur.id }}">Edit</button></td>
     </tr>
@@ -32,4 +32,8 @@
     {% endfor %}
 </table>
 </form>
+
+<div class="pagination">
+    {{ knp_pagination_render (prestations) }}
+</div>
 {% endblock %}

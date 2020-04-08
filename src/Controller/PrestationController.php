@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Prestation;
 use App\Form\PrestationType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -43,15 +44,26 @@ class PrestationController extends AbstractController
     /**
      * @Route("/prestation/afficher", name="prestation_afficher")
      */
-    public function prestationAfficher(){
-        
-        $em = $this->getDoctrine()->getManager();
-       
-        $query = $em->createQuery ('SELECT prestation, service, client FROM App\Entity\Prestation prestation JOIN prestation.service service JOIN prestation.client client ORDER BY prestation.datePrestation DESC');
-        $prestation = $query->getResult();
+    public function prestationAfficher(PaginatorInterface $paginator, Request $request){
 
-        $vars= ['prestations'=>$prestation];
-        return $this->render("prestation/prestation_afficher.html.twig", $vars);
+        $prestation = $this->getDoctrine()->getRepository(Prestation::class)->findAll();
+        $numeroPage = $request->query->getInt('page',1);
+
+        $paginationPrestation = $paginator->paginate(
+            $prestation,
+            $numeroPage,
+            5
+        );
+        return $this->render('prestation/prestation_afficher.html.twig',['prestations'=>$paginationPrestation]);
+
+        //sans pagination
+        // $em = $this->getDoctrine()->getManager();
+       
+        // $query = $em->createQuery ('SELECT prestation, service, client FROM App\Entity\Prestation prestation JOIN prestation.service service JOIN prestation.client client ORDER BY prestation.datePrestation DESC');
+        // $prestation = $query->getResult();
+
+        // $vars= ['prestations'=>$prestation];
+        // return $this->render("prestation/prestation_afficher.html.twig", $vars);
     }
 
     /**
@@ -94,44 +106,45 @@ class PrestationController extends AbstractController
 
     }
 
-    /**
-     * @Route("/prestation/rechercher")
-     */
-    public function rechercherPrestation()
-    {
+    //la methode pour afficher la recherche des prestations sans ajax
+    // /**
+    //  * @Route("/prestation/rechercher")
+    //  */
+    // public function rechercherPrestation()
+    // {
         
-        return $this->render("prestation/prestation_rechercher.html.twig");
+    //     return $this->render("prestation/prestation_rechercher.html.twig");
 
-    }
+    // }
 
+    //la methode pour traiter la recherche des prestations sans ajax, ca marche mais j'ai remplacer par ajax
+    // /**
+    //  * @Route("/prestation/rechercher/traitement", name="prestation_rechercherTraitement")
+    //  */
+    // public function rechercherPrestationTraitement(Request $request)
+    // {
+    //     $dateDebut = $request->request->get('dateDebut');
+    //     $dateFin = $request->request->get('dateFin');
 
-    /**
-     * @Route("/prestation/rechercher/traitement", name="prestation_rechercherTraitement")
-     */
-    public function rechercherPrestationTraitement(Request $request)
-    {
-        $dateDebut = $request->request->get('dateDebut');
-        $dateFin = $request->request->get('dateFin');
-
-        $em = $this->getDoctrine()->getManager();
+    //     $em = $this->getDoctrine()->getManager();
        
-        $query = $em->createQuery ('SELECT prestation, service, client FROM App\Entity\Prestation prestation  JOIN prestation.service service JOIN prestation.client client WHERE prestation.datePrestation >= :dateDebut AND prestation.datePrestation <= :dateFin ORDER BY prestation.datePrestation DESC');
-        $query->setParameter('dateDebut', $dateDebut);
-        $query->setParameter('dateFin', $dateFin);
-        $prestation = $query->getResult();
+    //     $query = $em->createQuery ('SELECT prestation, service, client FROM App\Entity\Prestation prestation  JOIN prestation.service service JOIN prestation.client client WHERE prestation.datePrestation >= :dateDebut AND prestation.datePrestation <= :dateFin ORDER BY prestation.datePrestation DESC');
+    //     $query->setParameter('dateDebut', $dateDebut);
+    //     $query->setParameter('dateFin', $dateFin);
+    //     $prestation = $query->getResult();
 
-        $prixTotal = 0;
-        //je calcule le total pour la periode recherché
-        foreach($prestation as $value ){
-            $prixTotal += $value->getPrixService();
-        }
+    //     $prixTotal = 0;
+    //     //je calcule le total pour la periode recherché
+    //     foreach($prestation as $value ){
+    //         $prixTotal += $value->getPrixService();
+    //     }
 
-        $vars=['prestation'=>$prestation];
-        $vars['prix']=$prixTotal;
+    //     $vars=['prestation'=>$prestation];
+    //     $vars['prix']=$prixTotal;
 
-        return $this->render("prestation/prestation_rechercher_traitement.html.twig", $vars);
+    //     return $this->render("prestation/prestation_rechercher_traitement.html.twig", $vars);
 
-    }
+    // }
 
     /**
      * @Route("/prestation/recherche/ajax")
@@ -160,4 +173,5 @@ class PrestationController extends AbstractController
        
         return new JsonResponse($prestations);
     }
+
 }

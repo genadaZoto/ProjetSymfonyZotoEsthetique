@@ -67,7 +67,7 @@ btn_envoyer.addEventListener ("click", (event) => {
         createLi(arrayPrestations[i].client.prenom.charAt(0).toUpperCase() + arrayPrestations[i].client.prenom.slice(1));
         createLi(arrayPrestations[i].service.nom.charAt(0).toUpperCase() + arrayPrestations[i].service.nom.slice(1));
         createLi(arrayPrestations[i].carteBancaire === true ? "Oui":"Non");
-        createLi(arrayPrestations[i].prixService);
+        createLi(arrayPrestations[i].prixService + '€');
         
       }
       document.getElementById('contenu').appendChild(ul);
@@ -78,9 +78,11 @@ btn_envoyer.addEventListener ("click", (event) => {
            total += parseInt(el.prixService);
         }
         let prixTotal = document.createElement('div');
-        prixTotal.innerText = "Le total pour cette periode est:    " + total + "euro.";
+        prixTotal.innerText = "Le total pour cette periode est:    " + total + " €.";
         document.getElementById('contenu').appendChild(prixTotal);
-        
+        let prestationTotal = document.createElement('div');
+        prestationTotal.innerText = "Nombre total de prestations trouvé: " + arrayPrestations.length;
+        document.getElementById('contenu').appendChild(prestationTotal);
     })
     .catch (function (error){
         console.log (error);

@@ -17,6 +17,16 @@ ul.list-inline {
 }
 
 ul.list-inline li {
-    padding: 5px 30px;
+    padding: 5px 35px;
+    display: inline-block;
+}
+
+.pagination{
+    list-style: none;
+    padding: 15px;;
+}
+
+ul.pagination li {
+    padding: 5px 5px;
     display: inline-block;
 }
