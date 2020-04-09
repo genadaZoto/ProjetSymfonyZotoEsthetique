@@ -8,6 +8,7 @@ use App\Form\ClientType;
 use App\Form\ClientPrenomType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ClientController extends AbstractController
@@ -143,6 +144,37 @@ class ClientController extends AbstractController
         $em->flush();
         return $this->redirectToRoute("client_recherche");
         
+    }
+    //////////////////////////recherche client Ajax/////////////////////
+
+    /**
+     * @Route("/client/recherche", name="client_rechercheAjax")
+     */
+    public function clientRechercheAjax ()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $clients = $em->getRepository(Client::class)->findAll();
+        $vars = ["clients"=>$clients];
+
+          return $this->render('client/client_rechercheAjax.html.twig', $vars);
+
+    }
+
+    /**
+     * @Route("/client/recherche/traitement/ajax", name="traitement_rechercheClientAjax")
+     */
+    public function rechercheClientAjax(Request $request)
+    {
+
+        $clientId = $request->request->get('clientId');
+        
+            $em = $this->getDoctrine()->getManager();
+            $query = $em->createQuery ('SELECT photo,client FROM App\Entity\Photo photo JOIN photo.client client WHERE client.id = :input');
+            $query->setParameter('input', $clientId );
+    
+            $client = $query->getArrayResult();
+
+            return new JsonResponse($client);
     }
 
 }

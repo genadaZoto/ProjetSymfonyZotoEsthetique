@@ -20,73 +20,8 @@
 
 {% block javascripts %}
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+<script  src="{{ asset ('/assets/js/prestation.js') }}"></script>
 
-<script>
-btn_envoyer.addEventListener ("click", (event) => {
-    event.preventDefault ();
-
-    axios ({
-        url : '{{ path ("rechercheTraitementAjax") }}',
-        method : 'POST',
-        headers: {'Content-Type': 'multipart/form-data'},
-        data: new FormData (leFormulaire)
-    })
-    .then (function (response){
-        
-        let arrayPrestations = response.data;
-        document.getElementById('contenu').innerHTML="";
-  
-
-        const headerTable= ['Date Service', 'Nom Client', 'Nom Service', 'Carte Bancaire', 'Prix Service'];
-        let ulHeader = document.createElement('ul');
-       
-        
-        for( el of headerTable){
-            let li= document.createElement('li');
-            li.innerText = el;
-            ulHeader.appendChild(li);
-            ulHeader.appendChild(li);
-        }
-        document.getElementById('contenu').appendChild(ulHeader);
-        ulHeader.classList.add("list-header");
-      
-
-        function createLi(article){
-            let li= document.createElement('li');
-            li.innerText = article;
-            ul.appendChild(li);
-        }
-
-        
-      let ul = document.createElement('ul');
-      ul.classList.add("list-inline");
-      for(let i = 0; i< arrayPrestations.length; i++){
-        let br = document.createElement("BR");
-        ul.appendChild(br);
-        createLi(arrayPrestations[i].datePrestation.date.substring(0,10));
-        createLi(arrayPrestations[i].client.prenom.charAt(0).toUpperCase() + arrayPrestations[i].client.prenom.slice(1));
-        createLi(arrayPrestations[i].service.nom.charAt(0).toUpperCase() + arrayPrestations[i].service.nom.slice(1));
-        createLi(arrayPrestations[i].carteBancaire === true ? "Oui":"Non");
-        createLi(arrayPrestations[i].prixService + '€');
-        
-      }
-      document.getElementById('contenu').appendChild(ul);
-
-
-       let total = 0;
-        for(el of arrayPrestations){
-           total += parseInt(el.prixService);
-        }
-        let prixTotal = document.createElement('div');
-        prixTotal.innerText = "Le total pour cette periode est:    " + total + " €.";
-        document.getElementById('contenu').appendChild(prixTotal);
-        let prestationTotal = document.createElement('div');
-        prestationTotal.innerText = "Nombre total de prestations trouvé: " + arrayPrestations.length;
-        document.getElementById('contenu').appendChild(prestationTotal);
-    })
-    .catch (function (error){
-        console.log (error);
-    });
-});
-</script>
 {% endblock %}

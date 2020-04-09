@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un client{% endblock %}
+
+{% block body %}
+
+
+
+<h2>Selectioner un client</h2>
+
+<form id="leFormulaire">
+
+    <label>Selectionez le prenom:</label>
+    <select name="clientId">
+        {% for valeur in clients %}
+        <option value = {{ valeur.id }} >{{ valeur.prenom | capitalize}} </option>
+        {% endfor %}
+    </select>
+    <button type="submit">Submit</button>  
+
+</form>
+<div id="contenu"></div>
+{% endblock %}
+
+{% block javascripts %}

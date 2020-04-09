@@ -56,7 +56,7 @@ class PrestationController extends AbstractController
         );
         return $this->render('prestation/prestation_afficher.html.twig',['prestations'=>$paginationPrestation]);
 
-        //sans pagination
+        ////////////sans pagination////////////////
         // $em = $this->getDoctrine()->getManager();
        
         // $query = $em->createQuery ('SELECT prestation, service, client FROM App\Entity\Prestation prestation JOIN prestation.service service JOIN prestation.client client ORDER BY prestation.datePrestation DESC');
@@ -106,7 +106,7 @@ class PrestationController extends AbstractController
 
     }
 
-    //la methode pour afficher la recherche des prestations sans ajax
+    ////////////////la methode pour afficher la recherche des prestations sans ajax////////////////////////
     // /**
     //  * @Route("/prestation/rechercher")
     //  */
@@ -117,7 +117,7 @@ class PrestationController extends AbstractController
 
     // }
 
-    //la methode pour traiter la recherche des prestations sans ajax, ca marche mais j'ai remplacer par ajax
+    //////////la methode pour traiter la recherche des prestations sans ajax, ca marche mais j'ai remplacer par ajax/////////////////
     // /**
     //  * @Route("/prestation/rechercher/traitement", name="prestation_rechercherTraitement")
     //  */
@@ -156,7 +156,7 @@ class PrestationController extends AbstractController
     }
 
     /**
-     * @Route("/prestation/recherche/traitement/ajax", name="rechercheTraitementAjax")
+     * @Route("/prestation/recherche/traitement/ajax", options={"expose"=true},name="rechercheTraitementAjax")
      */
     public function rechercheTraitementAjax(Request $request)
     {
