@@ -148,7 +148,7 @@ class ClientController extends AbstractController
     //////////////////////////recherche client Ajax/////////////////////
 
     /**
-     * @Route("/client/recherche", name="client_rechercheAjax")
+     * @Route("/client/recherche/ajax", name="client_rechercheAjax")
      */
     public function clientRechercheAjax ()
     {
@@ -161,7 +161,7 @@ class ClientController extends AbstractController
     }
 
     /**
-     * @Route("/client/recherche/traitement/ajax", name="traitement_rechercheClientAjax")
+     * @Route("/client/recherche/traitement/ajax", options={"expose"=true}, name="traitement_rechercheClientAjax")
      */
     public function rechercheClientAjax(Request $request)
     {

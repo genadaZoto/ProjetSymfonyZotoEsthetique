@@ -1,5 +1,3 @@
-
-console.log("toto");
 btn_envoyer.addEventListener ("click", (event) => {
     event.preventDefault ();
 

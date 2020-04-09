@@ -16,10 +16,18 @@
         <option value = {{ valeur.id }} >{{ valeur.prenom | capitalize}} </option>
         {% endfor %}
     </select>
-    <button type="submit">Submit</button>  
+    <button id="btn_envoyer" type="submit">Submit</button>  
 
 </form>
 <div id="contenu"></div>
+
+
 {% endblock %}
 
 {% block javascripts %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+<script  src="{{ asset ('/assets/js/client.js') }}"></script>
+
+{% endblock %}
