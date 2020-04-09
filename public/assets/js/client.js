@@ -2,12 +2,12 @@ btn_envoyer.addEventListener("click", (event)=>{
     event.preventDefault();
 
     let route1 = Routing.generate("traitement_rechercheClientAjax");
-    let route2 = Routing.generate("delete_photo");
+    
     axios({
         url : route1,
         method : 'POST',
         header: {'Content-Type': 'multipart/form-data'},
-        data: new FormData (leFormulaire)
+        data: new FormData (document.getElementById("leFormulaire"))
     })
     .then(function (response){
         console.log(response.data);
@@ -45,6 +45,8 @@ btn_envoyer.addEventListener("click", (event)=>{
 
             let form = document.createElement("form");
             form.setAttribute('id','leFormulaire');
+            form.setAttribute('method', 'post');
+            form.setAttribute('action', '/client/delete/photo')
             
             for(let i =0; i <arrayClient.length; i++){
                 let img = document.createElement("IMG");
@@ -73,3 +75,6 @@ btn_envoyer.addEventListener("click", (event)=>{
         console.log(error)
     });
 });
+
+
+

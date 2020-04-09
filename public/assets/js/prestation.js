@@ -6,7 +6,7 @@ btn_envoyer.addEventListener ("click", (event) => {
         url : route,
         method : 'POST',
         headers: {'Content-Type': 'multipart/form-data'},
-        data: new FormData (leFormulaire)
+        data: new FormData (document.getElementById("leFormulaire"))
     })
     .then (function (response){
         

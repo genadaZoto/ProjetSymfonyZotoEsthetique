@@ -131,7 +131,7 @@ class ClientController extends AbstractController
       
     }
     /**
-     * @Route("/client/delete/photo", name="delete_photo")
+     * @Route("/client/delete/photo",options={"expose"=true}, name="delete_photo")
      */
     public function deletePhoto(Request $request)
     {
@@ -142,7 +142,9 @@ class ClientController extends AbstractController
        
         $em->remove($photo);
         $em->flush();
-        return $this->redirectToRoute("client_recherche");
+        return $this->redirectToRoute("client_rechercheAjax");
+
+        
         
     }
     //////////////////////////recherche client Ajax/////////////////////

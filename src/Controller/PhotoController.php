@@ -39,7 +39,7 @@ class PhotoController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($photo);
             $em->flush();
-            return new Response("fichier uploaded");
+            return $this->render("/photo/photo_uploaded.html.twig");
 
         }
         else{
