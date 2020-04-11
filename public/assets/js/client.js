@@ -10,9 +10,9 @@ btn_envoyer.addEventListener("click", (event)=>{
         data: new FormData (document.getElementById("leFormulaire"))
     })
     .then(function (response){
-        console.log(response.data);
+        //console.log(response.data);
         let arrayClient = response.data;
-        console.log(arrayClient);
+        //console.log(arrayClient);
         let contenu = document.getElementById('contenu');
         contenu.innerHTML="";
 
@@ -44,7 +44,7 @@ btn_envoyer.addEventListener("click", (event)=>{
             contenu.appendChild(email);
 
             let form = document.createElement("form");
-            form.setAttribute('id','leFormulaire');
+            form.setAttribute('id','leFormulaire2');
             form.setAttribute('method', 'post');
             form.setAttribute('action', '/client/delete/photo')
             
@@ -59,7 +59,7 @@ btn_envoyer.addEventListener("click", (event)=>{
                 btn.innerText = "Delete";
                 btn.name = "delete";
                 btn.type = "submit";
-                btn.setAttribute('id', 'delete');
+                btn.setAttribute('id', 'btn');
                 btn.setAttribute('value', arrayClient[i].id);
                 form.appendChild(img);
                 form.appendChild(label);
@@ -75,6 +75,5 @@ btn_envoyer.addEventListener("click", (event)=>{
         console.log(error)
     });
 });
-
 
 

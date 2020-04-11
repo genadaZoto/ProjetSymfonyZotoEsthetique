@@ -11,16 +11,19 @@
 <form action="{{ path ('traitement_deleteEdit') }}" method="POST">
 <table>
     <tr>
+        <th>Nº</th>
         <th>Service</th>
         <th>Prix</th>
     </tr>
+    {% set count = 1 %}
     {% for valeur in services %}
-   
     <tr>
+        <td>{{ count }}</td>
         <td>{{ valeur.nom | capitalize }}</td>
-        <td>{{ valeur.prix }} euro</td>
+        <td>{{ valeur.prix }} €</td>
         <td><button type="submit" name="delete" value="{{ valeur.id }}">Delete</button></td>
         <td><button type="submit" name="edit" value="{{ valeur.id }}">Edit</button></td>
+        {% set count = count + 1 %}
     </tr>
  
     {% endfor %}

@@ -143,8 +143,7 @@ class ClientController extends AbstractController
         $em->remove($photo);
         $em->flush();
         return $this->redirectToRoute("client_rechercheAjax");
-
-        
+      
         
     }
     //////////////////////////recherche client Ajax/////////////////////

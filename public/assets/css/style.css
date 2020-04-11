@@ -1,10 +1,13 @@
+
+body{
+     padding: 5%;
+}
+  
 ul.list-header li{
     padding: 5px 13px;
     display: inline-block;
     font-weight: 1000;
 }
-
-
 .list-inline
 .list-header {
     /* display: flex;

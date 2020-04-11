@@ -19,7 +19,7 @@ btn_envoyer.addEventListener ("click", (event) => {
             contenu.appendChild(msg);
         }
         else{
-            const headerTable= ['Date Service', 'Nom Client', 'Nom Service', 'Carte Bancaire', 'Prix Service'];
+            const headerTable= ['Nº', 'Date Service', 'Nom Client', 'Nom Service', 'Carte Bancaire', 'Prix Service'];
         let ulHeader = document.createElement('ul');
        
         
@@ -45,19 +45,19 @@ btn_envoyer.addEventListener ("click", (event) => {
       for(let i = 0; i< arrayPrestations.length; i++){
         let br = document.createElement("BR");
         ul.appendChild(br);
+        createLi(i+1);
         createLi(arrayPrestations[i].datePrestation.date.substring(0,10));
         createLi(arrayPrestations[i].client.prenom.charAt(0).toUpperCase() + arrayPrestations[i].client.prenom.slice(1));
         createLi(arrayPrestations[i].service.nom.charAt(0).toUpperCase() + arrayPrestations[i].service.nom.slice(1));
         createLi(arrayPrestations[i].carteBancaire === true ? "Oui":"Non");
-        createLi(arrayPrestations[i].prixService + '€');
-        
+        createLi(arrayPrestations[i].prixService + '€'); 
       }
       contenu.appendChild(ul);
 
 
        let total = 0;
         for(el of arrayPrestations){
-           total += parseInt(el.prixService);
+           total += parseFloat(el.prixService);
         }
         let prixTotal = document.createElement('div');
         prixTotal.innerText = "Le total pour cette periode est:    " + total + " €.";

@@ -24,7 +24,7 @@ class Service
     private $nom;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0)
+     * @ORM\Column(type="decimal", precision=8, scale=2)
      */
     private $prix;
 
