@@ -11,6 +11,7 @@ btn_envoyer.addEventListener ("click", (event) => {
     .then (function (response){
         
         let arrayPrestations = response.data;
+        console.log(arrayPrestations);
         let contenu = document.getElementById('contenu');
         contenu.innerHTML="";
         if(arrayPrestations.length == 0){
@@ -65,6 +66,39 @@ btn_envoyer.addEventListener ("click", (event) => {
         let prestationTotal = document.createElement('div');
         prestationTotal.innerText = "Nombre total de prestations trouvé: " + arrayPrestations.length;
         contenu.appendChild(prestationTotal);
+
+        //creation du button pour telecharger le fichier format xl
+      
+        
+        let fin = arrayPrestations.length - 1;
+        let dFin = arrayPrestations[0].datePrestation.date.substring(0,10);
+        let dDebut = arrayPrestations[fin].datePrestation.date.substring(0,10);
+       
+        console.log(dDebut);
+        console.log(dFin);
+
+
+        let form = document.createElement("form");
+        form.setAttribute('method', 'POST');
+        form.setAttribute('action', '/prestation/xlFile');
+
+        let dateDebut = document.createElement("input");
+        dateDebut.type = "hidden";
+        dateDebut.name = "dateDebut";
+        dateDebut.value = dDebut;
+
+        let dateFin = document.createElement("input");
+        dateFin.type = "hidden";
+        dateFin.name = "dateFin";
+        dateFin.value = dFin;
+
+        let xlBtn = document.createElement("Button");
+        xlBtn.type = "submit";
+
+        form.appendChild(dateDebut);
+        form.appendChild(dateFin);
+        form.appendChild(xlBtn);
+        contenu.appendChild(form);
 
         }
               
