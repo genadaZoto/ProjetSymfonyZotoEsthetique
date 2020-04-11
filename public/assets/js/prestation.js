@@ -94,6 +94,7 @@ btn_envoyer.addEventListener ("click", (event) => {
 
         let xlBtn = document.createElement("Button");
         xlBtn.type = "submit";
+        xlBtn.innerText= "Télécharger en Excel"
 
         form.appendChild(dateDebut);
         form.appendChild(dateFin);

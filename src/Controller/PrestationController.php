@@ -194,7 +194,7 @@ class PrestationController extends AbstractController
         $query->setParameter('dateDebut', $dateDebut);
         $query->setParameter('dateFin', $dateFin);
         $prestations = $query->getResult();
-        dd($prestations);
+        //dd($prestations);
 
 
           //spredsheet
@@ -203,8 +203,24 @@ class PrestationController extends AbstractController
         
           /* @var $sheet \PhpOffice\PhpSpreadsheet\Writer\Xlsx\Worksheet */
           $sheet = $spreadsheet->getActiveSheet();
-          $sheet->setCellValue('A1', 'Hello World !');
-          $sheet->setTitle("My First Worksheet");
+          
+          $sheet->setTitle("Prestations");
+          
+          $sheet->setCellValue('A1', 'Date Service');
+          $sheet->setCellValue('B1', 'Nom Service');
+          $sheet->setCellValue('C1', 'Nom Client');
+          $sheet->setCellValue('D1', 'Carte Bancaire');
+          $sheet->setCellValue('E1', 'Prix Service');
+
+          $counter = 2;
+          foreach($prestations as $value ){
+                    $sheet->setCellValue('A'.$counter, $value->getDatePrestation());
+                    $sheet->setCellValue('B'.$counter, ucfirst($value->getService()->getNom()));
+                    $sheet->setCellValue('C'.$counter, ucfirst($value->getClient()->getPrenom()));
+                    $sheet->setCellValue('D'.$counter, ($value->getCarteBancaire())=== true ? "Oui":"Non");
+                    $sheet->setCellValue('E'.$counter, $value->getPrixService());
+                    $counter++;
+                }
           
           // Create your Office 2007 Excel (XLSX Format)
           $writer = new Xlsx($spreadsheet);
