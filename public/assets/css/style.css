@@ -31,5 +31,39 @@ ul.pagination li {
 }
 
 .bg-gradient-primary{
-    background: linear-gradient(135deg, rgb(165, 27, 192), #ffae00);
+    background: linear-gradient(90deg, #9c6004 0%, #e3e759 100%);
 }
+ 
+
+h3{
+    color: #8f5907 ;
+}
+
+.title {
+    font-size: 240%;
+    color:  #8f5907; 
+    font-family: 'Playball', cursive;
+    font-weight: 1000;
+}
+
+input[type=text],[type=date], select, textarea {
+    width: 50%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+  }
+
+  input[type=submit] {
+    background: linear-gradient(90deg, #9c6004 0%, #e3e759 100%);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+
