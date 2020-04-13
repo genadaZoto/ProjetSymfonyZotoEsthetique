@@ -1,8 +1,4 @@
 
-body{
-     padding: 5%;
-}
-  
 ul.list-header li{
     padding: 5px 13px;
     display: inline-block;
@@ -32,4 +28,8 @@ ul.list-inline li {
 ul.pagination li {
     padding: 5px 5px;
     display: inline-block;
+}
+
+.bg-gradient-primary{
+    background: linear-gradient(135deg, rgb(165, 27, 192), #ffae00);
 }
