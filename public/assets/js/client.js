@@ -49,22 +49,28 @@ btn_envoyer.addEventListener("click", (event)=>{
             form.setAttribute('action', '/client/delete/photo')
             
             for(let i =0; i <arrayClient.length; i++){
+                let conteneur = document.createElement('div');
+                conteneur.setAttribute('class', 'conteneur');
                 let img = document.createElement("IMG");
                 img.setAttribute('src', '/dossierFichiers/'+arrayClient[i].lienImage+ '');
+                let div = document.createElement('div');
+                div.setAttribute('class', 'infoPhoto');
                 let label = document.createElement("p");
                 label.innerText = "Label: " + arrayClient[i].label;
                 let date = document.createElement('p');
                 date.innerText = "Date: " + arrayClient[i].datePhoto.date.substring(0,10);
                 let btn = document.createElement("BUTTON");
-                btn.innerText = "Delete";
+                btn.classList.add("fa", "fa-trash-alt", "fa-6");
                 btn.name = "delete";
                 btn.type = "submit";
                 btn.setAttribute('id', 'btn');
                 btn.setAttribute('value', arrayClient[i].id);
-                form.appendChild(img);
-                form.appendChild(label);
-                form.appendChild(date);
-                form.appendChild(btn);
+                conteneur.appendChild(img);
+                div.appendChild(label);
+                div.appendChild(date);
+                div.appendChild(btn);
+                conteneur.appendChild(div);
+                form.appendChild(conteneur);
             }
             contenu.appendChild(form);
             

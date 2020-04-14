@@ -8,13 +8,17 @@ ul.pagination li {
     display: inline-block;
 }
 
+.page-link{
+    color: #8f5907 ;
+    font-weight: 800;
+}
 h2{
     color: #8f5907 ;
 }
 
 .header{
     background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
-    width: 70%;
+    width: 100%;
     padding: 0.5%;
     border-radius: 4px;
     margin-bottom: 5%;
@@ -144,6 +148,8 @@ tr:nth-child(even) {
 img{
     width:50%;
     height: 50%;
+    border-radius: 8px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, .5);
 }
 .info{
     font-size: 18px;
@@ -154,12 +160,16 @@ img{
     margin-top: 2%;
 }
 
-#leFormulaire2{
+.conteneur{
     display: flex;
-    flex-direction: column;  
+    flex-direction: row;
     padding-top: 2%;
 }
+.infoPhoto{
+    padding: 5%;
+}
+
 #btn{
-    width: 10%;
+    width: 60px;;
     margin-bottom: 2%;
   }
