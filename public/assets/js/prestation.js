@@ -66,9 +66,11 @@ btn_envoyer.addEventListener ("click", (event) => {
            total += parseFloat(el.prixService);
         }
         let prixTotal = document.createElement('div');
+        prixTotal.setAttribute('class', 'info');
         prixTotal.innerText = "Le total pour cette periode est:    " + total + " €.";
         contenu.appendChild(prixTotal);
         let prestationTotal = document.createElement('div');
+        prestationTotal.setAttribute('class', 'info');
         prestationTotal.innerText = "Nombre total de prestations trouvé: " + arrayPrestations.length;
         contenu.appendChild(prestationTotal);
 
