@@ -10,7 +10,7 @@
 		{% block stylesheets %}
 			<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-  
+      <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Fascinate&family=Modak&display=swap" rel="stylesheet">
 
 		{% endblock %}
 	</head>
@@ -23,8 +23,12 @@
 
     <!-- Nav Item - User -->
     <div class="sideNav">
-			
-      <span><i class="fas fa-user"></i>User</span>
+
+      <!-- Nav Item - Title-->
+      <span class="title"><a class="collapse-item" href="/main"></a>Zoto Esthetique</span>
+      <hr>
+			<!-- Nav Item - User-->
+      <span class="navItem"><i class="fas fa-user"></i>User</span>
 			<a class="collapse-item" href="/register">Register</a>
 			<a class="collapse-item" href="/login">Login</a>
 			<a class="collapse-item" href="/logout">Logout</a>
@@ -32,14 +36,14 @@
 		<hr>
 
 		<!-- Nav Item - Service-->
-			<span>Service</span>
+			<span class="navItem"> <i class="fas fa-procedures"></i>Service</span>
 			<a class="collapse-item" href="/service/insert">Inserer Service</a>
 			<a class="collapse-item" href="/service/afficher">Afficher les Services</a>
 		<!-- Divider -->
 		<hr>
 
 		<!-- Nav Item - Client-->
-			<span>Client</span>
+			<span class="navItem"><i class="fas fa-portrait"></i>Client</span>
 			<a class="collapse-item" href="/client/insert">Inserer Client</a>
 			<a class="collapse-item" href="/client/afficher">Afficher les Clients</a>
 			<a class="collapse-item" href="/photo/upload">Upload photo</a>
@@ -48,7 +52,7 @@
 		<hr>
 
 		<!-- Nav Item - Prestation-->
-			<span>Prestation</span>
+			<span class="navItem"> <i class="far fa-calendar-alt"></i>Prestation</span>
 			<a class="collapse-item" href="/prestation/insert">Inserer Prestation</a>
 			<a class="collapse-item" href="/prestation/afficher">Afficher les Prestations</a>
 			<a class="collapse-item" href="/prestation/recherche/ajax">Rechercher Prestation</a>
@@ -60,8 +64,6 @@
 
 <!-- Topbar -->
 <ul class="topNav">
-   <li class="title">Zoto Esthetique</li>
-
 	<li>
 		{% if app.user %}
 			<div class="mb-3">

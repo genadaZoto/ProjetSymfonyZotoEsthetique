@@ -57,7 +57,7 @@ class PrestationController extends AbstractController
         $paginationPrestation = $paginator->paginate(
             $prestation,
             $numeroPage,
-            5
+            10
         );
         return $this->render('prestation/prestation_afficher.html.twig', ['prestations' => $paginationPrestation]);
 
@@ -88,26 +88,9 @@ class PrestationController extends AbstractController
             $em->remove($prestation);
             $em->flush();
             return $this->redirectToRoute("prestation_afficher");
-        } else {
-            $vars = ['prestation' => $prestation];
-            return $this->render("prestation/prestation_edit.html.twig", $vars);
-        }
+        } 
     }
 
-    /**
-     * @Route("/prestation/edit", name="traitement_editPrestation")
-     */
-    public function prestationEdit(Request $request)
-    {
-        $id = $request->request->get('id');
-        $em = $this->getDoctrine()->getManager();
-        $prestation = $em->getRepository(Prestation::class)->findOneBy(array("id" => $id));
-        // $prestation->setDatePrestation($request->request->get('datePrestation'));
-        $prestation->setCarteBancaire($request->request->get('carteBancaire'));
-        $prestation->setPrixService($request->request->get('prixService'));
-        $em->flush();
-        return $this->redirectToRoute("prestation_afficher");
-    }
 
     ////////////////la methode pour afficher la recherche des prestations sans ajax, remplacé par la methode ajax////////////////////////
     // /**

@@ -6,8 +6,8 @@
 {% block body %}
 
 
-
-<h2>Selectioner un client</h2>
+<div class="main">
+<div class="header"><h2>Selectioner un client</h2></div>
 
 <form action="{{ path ('traitement_rechercheClient') }}" method="POST">
 
@@ -20,4 +20,6 @@
     <button type="submit">Submit</button>  
 
 </form>
+
+</div>
 {% endblock %}

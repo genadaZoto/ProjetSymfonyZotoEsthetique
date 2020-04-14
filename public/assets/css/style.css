@@ -30,19 +30,27 @@ ul.pagination li {
     display: inline-block;
 }
 
-h3{
+h2{
     color: #8f5907 ;
 }
 
-.title {
-    font-size: 240%;
-    color:  #8f5907; 
-    font-family: 'Playball', cursive;
-    font-weight: 1000;
-    padding: 0 30% 0 20%;
+.header{
+    background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
+    width: 70%;
+    padding: 0.5%;
+    border-radius: 4px;
+    margin-bottom: 5%;
 }
 
-input[type=text],[type=date], select, textarea {
+.title {
+    font-size: 150%;
+    color:  #8f5907; 
+    font-family: 'Chicle', cursive;
+    font-weight: 1000;
+    margin-bottom: 5%;
+}
+
+input[type=text],[type=date],[type=file],[type=email],[type=password], select, textarea {
     width: 50%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -53,14 +61,15 @@ input[type=text],[type=date], select, textarea {
     resize: vertical;
   }
 
-input[type=submit] {
+input[type=submit], .xlBtn {
     background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
-    color: white;
+    color: #8f5907 ;
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
   }
+
 
 input[type=submit]:hover {
     background-position: right center;
@@ -72,7 +81,7 @@ input[type=submit]:hover {
     position: fixed;
     z-index: 1;
     top: 0;
-    left: 0;
+    left: 1%;
     overflow-x: hidden;
     padding-top: 16px;
   }
@@ -86,17 +95,49 @@ input[type=submit]:hover {
   }
 
 .main{
-    padding-left: 20%;
+    padding: 0 15% 0 20%;
 }
 .topNav {
     overflow: hidden;
   }
   
 ul.topNav li {
+    float: right;
     text-decoration: none;
     display: inline-block;
 }
 
-i, hr{
+i{
     color: #F09819;
+    padding-right: 3%;
 }
+label {
+    display: flex;
+    flex-direction: row;  
+}
+
+button{
+    text-decoration: none;
+    background-color: transparent;
+    outline: none ;
+    box-shadow: none ;
+    border:none;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th{
+      color:#8f5907 ;
+  }
+  
+  td, th {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: rgb(247, 242, 214);
+  }

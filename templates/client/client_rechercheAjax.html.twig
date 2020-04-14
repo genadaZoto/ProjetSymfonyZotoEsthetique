@@ -5,8 +5,8 @@
 {% block body %}
 
 
-
-<h2>Selectioner un client</h2>
+<div class="main">
+<div class="header"><h2>Selectioner un client</h2></div>
 
 <form id="leFormulaire">
 
@@ -16,11 +16,11 @@
         <option value = {{ valeur.id }} >{{ valeur.prenom | capitalize}} </option>
         {% endfor %}
     </select>
-    <button id="btn_envoyer" type="submit">Submit</button>  
+    <input id="btn_envoyer" type="submit"></input>  
 
 </form>
 <div id="contenu"></div>
-
+</div>
 
 {% endblock %}
 

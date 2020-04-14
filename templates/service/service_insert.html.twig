@@ -4,9 +4,13 @@
 
 {% block body %}
 
+<div class="main">
+    <div class="header"><h2>Inserer un nouveau service!</h2></div>
+
 {{ form_start (formulaire) }}
 {{ form_widget (formulaire) }}
 <input type="submit" value="Inserer">
 {{ form_end(formulaire) }}
 
+</div>
 {% endblock %}

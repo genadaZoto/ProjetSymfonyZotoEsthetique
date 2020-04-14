@@ -4,20 +4,21 @@
 
 {% block body %}
 
-<h3>Rechercher un prestation</h3>
+<div class="main">
+<div class="header"><h2>Rechercher un prestation</h2></div>
 
 <form id="leFormulaire">
 
-        <label>Date debut</label></br>
-        <input required type="date" name="dateDebut"></input></br>
-        <label>Date fin</label></br>
+        <label>Date debut</label>
+        <input required type="date" name="dateDebut"></input>
+        <label>Date fin</label>
         <input required type="date" name="dateFin"></input></br>
         <input id="btn_envoyer" type="submit"></input>
 </form>
 <div id="contenu"></div>
 
 
-
+</div>
 {% endblock %}
 
 {% block javascripts %}

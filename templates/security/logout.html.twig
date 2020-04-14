@@ -3,10 +3,13 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-Bye Bye! See you soon...
+
+<div class="main">
+    <div class="header"><h2>Bye Bye! See you soon...</h2></div>
 
 <form action ="{{ path("app_login") }}" method="POST">
-    <button>LogIn</button>
+    <label>LogIn</label><input type="submit"></input>
 </form>
 
+</div>
 {% endblock %}

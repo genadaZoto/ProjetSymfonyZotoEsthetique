@@ -3,7 +3,11 @@
 {% block title %}Hello MainController!{% endblock %}
 
 {% block body %}
-{% if app.user %}
-    Bienvenu! {{ app.user.nom}}
-{% endif %}
+<div class="main">
+    {% if app.user %}
+
+        <div class="header"><h2>Bienvenu! {{ app.user.nom}}</h2></div>
+    {% endif %}
+
+</div>
 {% endblock %}

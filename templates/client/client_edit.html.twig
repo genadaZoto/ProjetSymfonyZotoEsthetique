@@ -4,21 +4,23 @@
 
 {% block body %}
 
+<div class="main">
 
-
-<h2>Modifier un client</h2>
+<div class="header"><h2>Modifier un client</h2></div>
 
 <form action="{{ path ('traitement_editClient') }}" method="POST">
 
-        <label>Nom </label><input required name="nom"  value="{{ client.nom }}"></input></br>
-        <label>Prenom</label><input required name="prenom" value ="{{ client.prenom}}"></input></br>
-        <label>Adresse</label><input required name="adresse" value ="{{ client.adresse}}"></input></br>
-        <label>Contact</label><input required name="contact" value ="{{ client.contact}}"></input></br>
+        <label>Nom </label><input required type="text" name="nom"  value="{{ client.nom }}"></input></br>
+        <label>Prenom</label><input required type="text" name="prenom" value ="{{ client.prenom}}"></input></br>
+        <label>Adresse</label><input required type="text" name="adresse" value ="{{ client.adresse}}"></input></br>
+        <label>Contact</label><input required type="text" name="contact" value ="{{ client.contact}}"></input></br>
         <label>Email</label><input required type="email" name="email" value ="{{ client.email}}"></input></br>
-        <label>Id Card</label><input required name="idCard" value="{{ client.idCard}}"></input></br>
+        <label>Id Card</label><input required type="text" name="idCard" value="{{ client.idCard}}"></input></br>
         <label>Commentaires</label><textarea required name="commentaires" value="{{ client.commentaires}}">{{ client.commentaires}}</textarea></br>
         <input type="hidden" name="id" value= "{{ client.id }}"></input></br>
-        <button type="submit">Edit</button>
+        <input type="submit"></input>
 
 </form>
+
+</div>
 {% endblock %}

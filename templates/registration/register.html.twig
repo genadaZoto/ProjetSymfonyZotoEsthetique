@@ -3,7 +3,9 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+
+<div class="main">
+    <div class="header"><h2>Register</h2></div>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.nom) }}
@@ -12,6 +14,7 @@
         {{ form_row(registrationForm.plainPassword) }}
         
 
-        <button class="btn">Register</button>
+        <input type="submit" class="btn"></input>
     {{ form_end(registrationForm) }}
+</div>
 {% endblock %}

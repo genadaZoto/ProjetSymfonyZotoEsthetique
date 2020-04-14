@@ -1,15 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inserer un nouveau prestation!{% endblock %}
+{% block title %}Inserer un nouveau prestation!
+{% endblock %}
 
 {% block body %}
 
-<h3>Inserer Prestation</h3>
+	<div class="main">
 
-{{ form_start (formulaire) }}</br>
-{{ form_widget (formulaire) }}
-<input type="submit" value="Inserer">
-{{ form_end(formulaire) }}
+		<div class="header">
+			<h2>Inserer Prestation</h2>
+		</div>
 
+	{{ form_start (formulaire) }}</br>
+	{{ form_widget (formulaire) }}
+	<input type="submit" value="Inserer">
+	{{ form_end(formulaire) }}
+
+    </div>
 {% endblock %}
-

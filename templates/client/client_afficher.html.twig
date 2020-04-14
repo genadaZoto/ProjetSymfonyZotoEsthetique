@@ -4,9 +4,9 @@
 
 {% block body %}
 
+<div class="main">
 
-
-<h2>Voici un apercu de vos clients</h2>
+<div class="header"><h2>Voici un apercu de vos clients</h2></div>
 
 <form action="{{ path ('traitementClient_deleteEdit') }}" method="POST">
 <table>
@@ -19,6 +19,8 @@
         <th>Email</th>
         <th>Id Card</th>
         <th>Commentaires</th>
+        <th>Delete</th>
+        <th>Edit</th>
     </tr>
     {% set count = 1 %}
     {% for valeur in clients %}
@@ -32,12 +34,14 @@
         <td>{{ valeur.email | capitalize}} </td>
         <td>{{ valeur.idCard | capitalize}} </td>
         <td>{{ valeur.commentaires | capitalize}} </td>
-        <td><button type="submit" name="delete" value="{{ valeur.id }}">Delete</button></td>
-        <td><button type="submit" name="edit" value="{{ valeur.id }}">Edit</button></td>
+        <td><button type="submit" name="delete" value="{{ valeur.id }}"><i class="fas fa-trash-alt"></i></button></td>
+        <td><button type="submit" name="edit" value="{{ valeur.id }}"><i class="fas fa-edit"></i></button></td>
         {% set count = count + 1 %}
     </tr>
  
     {% endfor %}
 </table>
 </form>
+
+</div>
 {% endblock %}

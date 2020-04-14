@@ -4,16 +4,17 @@
 
 {% block body %}
 
+<div class="main">
 
+        <div class="header"><h2>Modifier un service</h2></div>
 
-<h2>Modifier un service</h2>
+        <form action="{{ path ('traitement_editService') }}" method="POST">
 
-<form action="{{ path ('traitement_editService') }}" method="POST">
+                <label>Nom Service</label><input type="text" name="nom" value="{{ service.nom }}"></input></br>
+                <label>Prix Service</label><input type="text" name="prix" value="{{ service.prix }}"></input></br>
+                <input type="hidden" name="id" value= "{{ service.id }}"></input></br>
+                <input type="submit"></input>
 
-        <label>Nom Service</label><input name="nom" value="{{ service.nom }}"></input></br>
-        <label>Prix Service</label><input name="prix" value="{{ service.prix }}"></input></br>
-        <input type="hidden" name="id" value= "{{ service.id }}"></input></br>
-        <button type="submit">Edit</button>
-
-</form>
+        </form>
+</div>
 {% endblock %}
