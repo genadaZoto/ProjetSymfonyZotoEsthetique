@@ -30,11 +30,6 @@ ul.pagination li {
     display: inline-block;
 }
 
-.bg-gradient-primary{
-    background: linear-gradient(90deg, #9c6004 0%, #e3e759 100%);
-}
- 
-
 h3{
     color: #8f5907 ;
 }
@@ -44,6 +39,7 @@ h3{
     color:  #8f5907; 
     font-family: 'Playball', cursive;
     font-weight: 1000;
+    padding: 0 30% 0 20%;
 }
 
 input[type=text],[type=date], select, textarea {
@@ -57,13 +53,50 @@ input[type=text],[type=date], select, textarea {
     resize: vertical;
   }
 
-  input[type=submit] {
-    background: linear-gradient(90deg, #9c6004 0%, #e3e759 100%);
+input[type=submit] {
+    background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
     color: white;
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
   }
-  
 
+input[type=submit]:hover {
+    background-position: right center;
+}
+
+.sideNav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 16px;
+  }
+  
+  .sideNav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+    display: block;
+  }
+
+.main{
+    padding-left: 20%;
+}
+.topNav {
+    overflow: hidden;
+  }
+  
+ul.topNav li {
+    text-decoration: none;
+    display: inline-block;
+}
+
+i, hr{
+    color: #F09819;
+}
