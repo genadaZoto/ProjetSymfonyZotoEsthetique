@@ -21,39 +21,44 @@ btn_envoyer.addEventListener ("click", (event) => {
         }
         else{
             const headerTable= ['Nº', 'Date Service', 'Nom Client', 'Nom Service', 'Carte Bancaire', 'Prix Service'];
-        let ulHeader = document.createElement('ul');
+            let table = document.createElement('table');
+            let trHeader = document.createElement('tr');
        
         
         for( el of headerTable){
-            let li= document.createElement('li');
-            li.innerText = el;
-            ulHeader.appendChild(li);
-            ulHeader.appendChild(li);
+            let td= document.createElement('th');
+            td.innerText = el;
+            trHeader.appendChild(td);
         }
-        contenu.appendChild(ulHeader);
-        ulHeader.classList.add("list-header");
-      
-
-        function createLi(article){
-            let li= document.createElement('li');
-            li.innerText = article;
-            ul.appendChild(li);
-        }
-
+        table.appendChild(trHeader);
+        contenu.appendChild(table);
         
-      let ul = document.createElement('ul');
-      ul.classList.add("list-inline");
+      
       for(let i = 0; i< arrayPrestations.length; i++){
-        let br = document.createElement("BR");
-        ul.appendChild(br);
-        createLi(i+1);
-        createLi(arrayPrestations[i].datePrestation.date.substring(0,10));
-        createLi(arrayPrestations[i].client.prenom.charAt(0).toUpperCase() + arrayPrestations[i].client.prenom.slice(1));
-        createLi(arrayPrestations[i].service.nom.charAt(0).toUpperCase() + arrayPrestations[i].service.nom.slice(1));
-        createLi(arrayPrestations[i].carteBancaire === true ? "Oui":"Non");
-        createLi(arrayPrestations[i].prixService + '€'); 
+        let tr = document.createElement('tr');
+        let td0= document.createElement('td');
+        td0.innerText = i + 1;
+        tr.appendChild(td0);
+        let td1= document.createElement('td');
+        td1.innerText = arrayPrestations[i].datePrestation.date.substring(0,10);
+        tr.appendChild(td1);
+        let td2= document.createElement('td');
+        td2.innerText = arrayPrestations[i].client.prenom.charAt(0).toUpperCase() + arrayPrestations[i].client.prenom.slice(1);
+        tr.appendChild(td2);
+        let td3= document.createElement('td');
+        td3.innerText = arrayPrestations[i].service.nom.charAt(0).toUpperCase() + arrayPrestations[i].service.nom.slice(1);
+        tr.appendChild(td3);
+        let td4= document.createElement('td');
+        td4.innerText = arrayPrestations[i].carteBancaire === true ? "Oui":"Non";
+        tr.appendChild(td4);
+        let td5= document.createElement('td');
+        td5.innerText = arrayPrestations[i].prixService + '€';
+        tr.appendChild(td5);
+
+        table.appendChild(tr);
       }
-      contenu.appendChild(ul);
+      contenu.appendChild(table);
+
 
 
        let total = 0;
@@ -74,10 +79,7 @@ btn_envoyer.addEventListener ("click", (event) => {
         let dFin = arrayPrestations[0].datePrestation.date.substring(0,10);
         let dDebut = arrayPrestations[fin].datePrestation.date.substring(0,10);
        
-        console.log(dDebut);
-        console.log(dFin);
-
-
+    
         let form = document.createElement("form");
         form.setAttribute('method', 'POST');
         form.setAttribute('action', '/prestation/xlFile');
