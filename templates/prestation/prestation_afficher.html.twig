@@ -26,7 +26,7 @@
         <td>{{ valeur.datePrestation| date('d/m/Y') }}</td>
         <td>{{ valeur.service.nom | capitalize}}</td>
         <td>{{ valeur.client.prenom | capitalize}}</td>
-        <td>{{ (valeur.carteBancaire == 1)? "Oui": "No" }}</td>
+        <td>{{ (valeur.carteBancaire == 1)? "Oui": "Non" }}</td>
         <td>{{ valeur.prixService}} €</td>
         <td><button type="submit" name="delete" value="{{ valeur.id }}"><i class="fas fa-trash-alt"></i></button></td>
         {% set count = count + 1 %}

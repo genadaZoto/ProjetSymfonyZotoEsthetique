@@ -70,11 +70,16 @@ class ServiceController extends AbstractController
         $service= $em->getRepository(Service::class)->findOneBy(array("id"=>$id));
 
         if($valButtonDelete != null){
-                     
-            $em->remove($service);
-            $em->flush();
-            return $this->redirectToRoute("service_afficher");
-
+             try{
+                $em->remove($service);
+                $em->flush();
+                return $this->redirectToRoute("service_afficher");
+            } 
+            catch(\Doctrine\DBAL\DBALException $e){
+                $msg = "Vous ne pouvez pas effacer ce service parce que il est utilisé dans des autres operations!
+                        Si vous voulais le effacer, effacez toutes les prestations qui utilise ce service d'abord.";
+                return $this->render('service/service_errorDelete.html.twig', ['msg'=>$msg]);
+           }        
         }else{
             $vars= ['service'=>$service];
             return $this->render("service/service_edit.html.twig", $vars);
