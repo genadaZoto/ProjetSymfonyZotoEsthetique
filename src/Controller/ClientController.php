@@ -76,7 +76,7 @@ class ClientController extends AbstractController
            }
            catch(\Doctrine\DBAL\DBALException $e){
                 $msg = "Vous ne pouvez pas effacer ce client parce que il est utilisé dans des autres operations!
-                        Si vous voulais le effacer, effacez tout les photos et les prestations a son nom d'abord.";
+                        Si vous voulais le effacer, effacez toutes les photos et les prestations a son nom d'abord.";
                 return $this->render('client/client_errorDelete.html.twig', ['msg'=>$msg]);
            }  
         }
