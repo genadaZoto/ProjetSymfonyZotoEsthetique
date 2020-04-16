@@ -78,8 +78,10 @@ class ServiceController extends AbstractController
             catch(\Doctrine\DBAL\DBALException $e){
                 $msg = "Vous ne pouvez pas effacer ce service parce que il est utilisé dans des autres operations!
                         Si vous voulais le effacer, effacez toutes les prestations qui utilisent ce service d'abord.";
+                $res = ["msg"=>$msg];
                 return $this->render('service/service_errorDelete.html.twig', ['msg'=>$msg]);
-           }        
+              
+            }        
         }else{
             $vars= ['service'=>$service];
             return $this->render("service/service_edit.html.twig", $vars);

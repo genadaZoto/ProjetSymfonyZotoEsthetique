@@ -52,6 +52,7 @@ btn_envoyer.addEventListener("click", (event)=>{
                 let conteneur = document.createElement('div');
                 conteneur.setAttribute('class', 'conteneur');
                 let img = document.createElement("IMG");
+                img.setAttribute('class', 'imgClient');
                 img.setAttribute('src', '/dossierFichiers/'+arrayClient[i].lienImage+ '');
                 let div = document.createElement('div');
                 div.setAttribute('class', 'infoPhoto');
