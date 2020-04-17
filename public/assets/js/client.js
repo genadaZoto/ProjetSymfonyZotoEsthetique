@@ -23,7 +23,8 @@ btn_envoyer.addEventListener("click", (event)=>{
         }
         else{
 
-          
+            let infoClient = document.createElement('div');
+            infoClient.setAttribute('class', 'infoClient');
             let nom = document.createElement('div');
             let prenom = document.createElement('div');
             let adresse = document.createElement('div');
@@ -37,11 +38,12 @@ btn_envoyer.addEventListener("click", (event)=>{
                 contact.innerText = "Contact: " + arrayClient[i].client.contact;
                 email.innerText = "Email: " + arrayClient[i].client.email;
             }
-            contenu.appendChild(nom);
-            contenu.appendChild(prenom);
-            contenu.appendChild(adresse);
-            contenu.appendChild(contact);
-            contenu.appendChild(email);
+            infoClient.appendChild(nom);
+            infoClient.appendChild(prenom);
+            infoClient.appendChild(adresse);
+            infoClient.appendChild(contact);
+            infoClient.appendChild(email);
+            contenu.appendChild(infoClient);
 
             let form = document.createElement("form");
             form.setAttribute('id','leFormulaire2');

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Afficher graphe{% endblock %}
+
+{% block body %}
+
+<div class="main">
+<div class="header"><h2>Afficher graphe</h2></div>
+
+<div class="container">
+    <canvas id="myChart"></canvas>
+</div>
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+<script>
+    let myChart = document.getElementById('myChart').getContext('2d');
+
+    let servicesChart = new Chart(myChart,{
+        type:'bar',
+        data:{
+            labels:['Manicure', 'Pedicure', 'Epilation', 'Soin visage'],
+            datasets:[{
+                label: 'Nombre Prestation',
+                data:[
+                    25,
+                    30,
+                    40,
+                    12
+
+                ],
+                backgroundColor: [
+                    'green',
+                    'pink',
+                    'blue',
+                    'yellow'
+                ],
+                borderWidth:1,
+                borderColor: '#777',
+                hoverBorderwidth: 4,
+                hoverBorderColor: '#000'
+            }]
+        },
+
+    });
+</script>
+
+
+{% endblock %}

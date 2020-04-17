@@ -10,8 +10,7 @@
 		{% block stylesheets %}
 			<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-      <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Fascinate&family=Modak&display=swap" rel="stylesheet">
-
+      		<link href="https://fonts.googleapis.com/css2?family=Chicle&family=Fascinate&family=Modak&display=swap" rel="stylesheet">
 		{% endblock %}
 	</head>
 
@@ -25,39 +24,41 @@
     <div class="sideNav">
 
       <!-- Nav Item - Title-->
-      <span class="title"><a class="collapse-item" href="/main"></a>Zoto <i class="fas fa-spa"></i> Esthetique</span>
+      <span class="title">Zoto <i class="fas fa-spa"><a href="/"></a></i> Esthetique</span>
       <div class="space"></div>
-      <hr class="line">
+     
 			<!-- Nav Item - User-->
       <span class="navItem"><i class="fas fa-user"></i>User</span>
-			<a class="collapse-item" href="/register">Register</a>
-			<a class="collapse-item" href="/login">Login</a>
-			<a class="collapse-item" href="/logout">Logout</a>
+			<a href="/register">Register</a>
+			<a href="/login">Login</a>
+			<a href="/logout">Logout</a>
 		<!-- Divider -->
-		<hr class="line">
+		</br>
+		
 
 		<!-- Nav Item - Service-->
 			<span class="navItem"> <i class="fas fa-procedures"></i>Service</span>
-			<a class="collapse-item" href="/service/insert">Inserer Service</a>
-			<a class="collapse-item" href="/service/afficher">Afficher les Services</a>
+			<a href="/service/insert">Inserer Service</a>
+			<a href="/service/afficher">Afficher les Services</a>
 		<!-- Divider -->
-		<hr class="line">
+		</br>
+		
 
 		<!-- Nav Item - Client-->
 			<span class="navItem"><i class="fas fa-portrait"></i>Client</span>
-			<a class="collapse-item" href="/client/insert">Inserer Client</a>
-			<a class="collapse-item" href="/client/afficher">Afficher les Clients</a>
-			<a class="collapse-item" href="/photo/upload">Upload photo</a>
-			<a class="collapse-item" href="/client/recherche/ajax">Rechercher Client</a>
+			<a href="/client/insert">Inserer Client</a>
+			<a href="/client/afficher">Afficher les Clients</a>
+			<a href="/photo/upload">Upload photo</a>
+			<a href="/client/recherche/ajax">Rechercher Client</a>
 		<!-- Divider -->
-		<hr class="line">
+		</br>
 
 		<!-- Nav Item - Prestation-->
 			<span class="navItem"> <i class="far fa-calendar-alt"></i>Prestation</span>
-			<a class="collapse-item" href="/prestation/insert">Inserer Prestation</a>
-			<a class="collapse-item" href="/prestation/afficher">Afficher les Prestations</a>
-			<a class="collapse-item" href="/prestation/recherche/ajax">Rechercher Prestation</a>
-			<a class="collapse-item" href="/prestation/graphe">Graphe Prestation</a>
+			<a href="/prestation/insert">Inserer Prestation</a>
+			<a href="/prestation/afficher">Afficher les Prestations</a>
+			<a href="/prestation/recherche/ajax">Rechercher Prestation</a>
+			<a href="/prestation/graphe">Graphe Prestation</a>
   </div>
 
 		

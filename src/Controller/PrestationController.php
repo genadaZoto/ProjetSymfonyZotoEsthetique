@@ -224,4 +224,37 @@ class PrestationController extends AbstractController
         // Return the excel file as an attachment
         return $this->file($temp_file, $fileName, ResponseHeaderBag::DISPOSITION_INLINE);
     }
+
+    //////////////afficher graphe
+    //SELECT SUM(prix_service) FROM prestation WHere service_id = 6 AND date_prestation BETWEEN '2020-01-01' AND '2020-12-31'
+    /**
+     * @Route("/prestation/graphe")
+     */
+    public function afficherGraphe(Request $request)
+    {
+
+        $year = '2020';
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery("SELECT service.id FROM App\Entity\Service service");
+        $resultat = $query->getResult();
+        //dd($resultat);
+
+        $dateDebut = $year.'-01-01';
+        $dateFin = $year.'-12-31';
+
+        foreach($resultat as $value){
+            $query1 = $em->createQuery("SELECT SUM(prestation.prixService) FROM App\Entity\Prestation prestation JOIN prestation.service service WHERE service.id = :idService AND prestation.datePrestation BETWEEN :dateDebut AND :dateFin ");
+            $query1->setParameter('dateDebut', $dateDebut);
+            $query1->setParameter('dateFin', $dateFin);
+            $query1->setParameter('idService', $value['id']);
+            $resultat1 = $query1->getResult();
+            dd($resultat1);
+           
+
+        }
+
+
+        return $this->render('prestation/afficher_graphe.html.twig');
+    }
 }
