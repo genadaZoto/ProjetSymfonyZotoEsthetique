@@ -225,36 +225,48 @@ class PrestationController extends AbstractController
         return $this->file($temp_file, $fileName, ResponseHeaderBag::DISPOSITION_INLINE);
     }
 
-    //////////////afficher graphe
-    //SELECT SUM(prix_service) FROM prestation WHere service_id = 6 AND date_prestation BETWEEN '2020-01-01' AND '2020-12-31'
+    //////////////afficher graphe////////////////////////////////////////
     /**
      * @Route("/prestation/graphe")
      */
-    public function afficherGraphe(Request $request)
+    public function afficherGraphe()
     {
 
-        $year = '2020';
+        return $this->render('prestation/afficher_graphe.html.twig');
+    }
+
+
+    /**
+     * @Route("/prestation/graphe", name="afficher_graphe")
+     */
+    public function afficherGrapheTraitement(Request $request)
+    {
+
+
+        $year = $request->request->get('year');
+      
 
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery("SELECT service.id FROM App\Entity\Service service");
+        $query = $em->createQuery("SELECT service.id, service.nom FROM App\Entity\Service service");
         $resultat = $query->getResult();
-        //dd($resultat);
+        //dd($resultat[0]['nom']);
 
         $dateDebut = $year.'-01-01';
         $dateFin = $year.'-12-31';
 
+        $vars = [];
         foreach($resultat as $value){
+            
             $query1 = $em->createQuery("SELECT SUM(prestation.prixService) FROM App\Entity\Prestation prestation JOIN prestation.service service WHERE service.id = :idService AND prestation.datePrestation BETWEEN :dateDebut AND :dateFin ");
             $query1->setParameter('dateDebut', $dateDebut);
             $query1->setParameter('dateFin', $dateFin);
             $query1->setParameter('idService', $value['id']);
-            $resultat1 = $query1->getResult();
-            dd($resultat1);
+            $resultat1 = $query1->getArrayResult();
            
-
+            $vars[$value['nom']] = $resultat1[0][1];
+            
         }
-
-
-        return $this->render('prestation/afficher_graphe.html.twig');
+        //dd($vars)
+        return new JsonResponse($vars);
     }
 }

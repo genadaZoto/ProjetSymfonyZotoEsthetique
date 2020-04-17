@@ -6,6 +6,10 @@
 
 <div class="main">
 <div class="header"><h2>Afficher graphe</h2></div>
+<form id="grapheForm">
+    <label>Entrez l'anée</label><input type="text" name="year" placeholder="Exemple: 2015">
+    <input id="btn_envoyer" type="submit"></input>
+</form>
 
 <div class="container">
     <canvas id="myChart"></canvas>
@@ -15,38 +19,56 @@
 {% endblock %}
 
 {% block javascripts %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
 <script>
-    let myChart = document.getElementById('myChart').getContext('2d');
 
-    let servicesChart = new Chart(myChart,{
-        type:'bar',
-        data:{
-            labels:['Manicure', 'Pedicure', 'Epilation', 'Soin visage'],
-            datasets:[{
-                label: 'Nombre Prestation',
-                data:[
-                    25,
-                    30,
-                    40,
-                    12
+    btn_envoyer.addEventListener("click", (event) =>{
+        event.preventDefault ();
+        axios({
+            url:'{{ path("afficher_graphe") }}',
+            method: 'POST',
+            headers: {'Content-Type': 'multipart/form-data'},
+            data: new FormData (grapheForm)
+        })
+        .then(function (response){
+            console.log(response.data);
 
-                ],
-                backgroundColor: [
-                    'green',
-                    'pink',
-                    'blue',
-                    'yellow'
-                ],
-                borderWidth:1,
-                borderColor: '#777',
-                hoverBorderwidth: 4,
-                hoverBorderColor: '#000'
-            }]
-        },
+    //         let myChart = document.getElementById('myChart').getContext('2d');
 
+    // let array = ['Manicure', 'Pedicure', 'Epilation', 'Soin visage'];
+    // let array2 = [25,30,40,12];
+
+    // let servicesChart = new Chart(myChart,{
+    //     type:'bar',
+    //     data:{
+    //         labels: array,
+    //         datasets:[{
+    //             label: 'Nombre Prestation',
+    //             data: array2,
+    //             backgroundColor: [
+    //                 'green',
+    //                 'pink',
+    //                 'blue',
+    //                 'yellow'
+    //             ],
+    //             borderWidth:1,
+    //             borderColor: '#777',
+    //             hoverBorderwidth: 4,
+    //             hoverBorderColor: '#000'
+    //         }]
+    //     },
+
+    // });
+
+
+    })
+    .catch(function (error){
+        console.log(error);
     });
+});
+    
 </script>
 
 
