@@ -237,7 +237,7 @@ class PrestationController extends AbstractController
 
 
     /**
-     * @Route("/prestation/grapheTraitement", name="afficher_graphe")
+     * @Route("/prestation/grapheTraitement", options={"expose"=true}, name="afficher_graphe")
      */
     public function afficherGrapheTraitement(Request $request)
     {
