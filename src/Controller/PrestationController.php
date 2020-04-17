@@ -225,8 +225,8 @@ class PrestationController extends AbstractController
         return $this->file($temp_file, $fileName, ResponseHeaderBag::DISPOSITION_INLINE);
     }
 
-    //////////////afficher graphe////////////////////////////////////////
-    /**
+    //////////////////////////////////afficher graphe///////////////////////////////////////////
+     /**
      * @Route("/prestation/graphe")
      */
     public function afficherGraphe()
@@ -237,36 +237,29 @@ class PrestationController extends AbstractController
 
 
     /**
-     * @Route("/prestation/graphe", name="afficher_graphe")
+     * @Route("/prestation/grapheTraitement", name="afficher_graphe")
      */
     public function afficherGrapheTraitement(Request $request)
     {
-
-
         $year = $request->request->get('year');
-      
-
+       
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery("SELECT service.id, service.nom FROM App\Entity\Service service");
         $resultat = $query->getResult();
-        //dd($resultat[0]['nom']);
 
         $dateDebut = $year.'-01-01';
         $dateFin = $year.'-12-31';
 
         $vars = [];
         foreach($resultat as $value){
-            
             $query1 = $em->createQuery("SELECT SUM(prestation.prixService) FROM App\Entity\Prestation prestation JOIN prestation.service service WHERE service.id = :idService AND prestation.datePrestation BETWEEN :dateDebut AND :dateFin ");
             $query1->setParameter('dateDebut', $dateDebut);
             $query1->setParameter('dateFin', $dateFin);
             $query1->setParameter('idService', $value['id']);
             $resultat1 = $query1->getArrayResult();
-           
             $vars[$value['nom']] = $resultat1[0][1];
-            
         }
-        //dd($vars)
+       
         return new JsonResponse($vars);
     }
 }
