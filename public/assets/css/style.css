@@ -184,11 +184,17 @@ tr:nth-child(even) {
     width: 60px;;
     margin-bottom: 2%;
 }
+
 .meteo{
+    background-image: url('/assets/images/centre2.jpg'); 
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: row;
     font-size: larger;
+    color: #8f5907;
+    font-weight: bolder;
 }
+
 .imgMeteo{
     width : 100px;
     height : 100px;
@@ -206,5 +212,39 @@ form, .infoClient, .meteo{
     text-align: center;
     margin: 0 auto;
 }
-
-
+.about, .map{
+    font-size: 20px;
+    box-shadow:  0 1px 15px 1px rgba(39,39,39,.1);
+    border-radius: .1875rem;
+    margin: 2%;
+}
+.about{
+    text-align: center;
+    padding: 2% 20%;
+}
+.map{
+    display: flex;
+    flex-direction: row;
+    padding: 2% ;
+}
+.imgCabinet2{
+    width: 450px;
+    height: 300px;
+    padding-left: 30px;
+}
+.imgMap{
+    padding-right: 30px;
+}
+.serviceClient{
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    box-shadow:  0 1px 15px 1px rgba(39,39,39,.1);
+    border-radius: .1875rem;
+    padding: 2%;
+    margin: 2%;
+}
+.prix{
+    color:rgba(255, 145, 0, 0.808);
+    padding-left: 1%;
+}

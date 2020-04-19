@@ -11,7 +11,7 @@ btn_envoyer.addEventListener ("click", (event) => {
     .then (function (response){
         
         let arrayPrestations = response.data;
-        console.log(arrayPrestations);
+        
         let contenu = document.getElementById('contenu');
         contenu.innerHTML="";
         if(arrayPrestations.length == 0){
