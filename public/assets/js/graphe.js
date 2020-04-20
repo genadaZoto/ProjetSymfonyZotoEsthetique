@@ -13,8 +13,13 @@ btn_envoyer.addEventListener("click", (event) =>{
         let arrayServices = Object.keys(prestations);
         let arrayValeur = Object.values(prestations);
 
-        
-let myChart = document.getElementById('myChart').getContext('2d');
+let container = document.getElementById('container');
+while(container.hasChildNodes()){
+    container.removeChild(container.lastChild);
+}
+let myChart = document.createElement('canvas');
+container.appendChild(myChart);
+myChart.id = "myChart";
 
 let servicesChart = new Chart(myChart,{
     type:'bar',
@@ -42,6 +47,7 @@ let servicesChart = new Chart(myChart,{
     }
     
 });
+
 })
 .catch(function (error){
     console.log(error);

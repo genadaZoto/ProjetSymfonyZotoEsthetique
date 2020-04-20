@@ -18,8 +18,8 @@ class GestionnaireErreurAccess implements AccessDeniedHandlerInterface
 
     public function handle(Request $request, AccessDeniedException $accessDeniedException)
     {
-       
-        return new Response(403);
+        return new Response("Cette page est réservé a l'administrateur du site!");
+        //return new RedirectResponse($this->router->generate('app_login'));
 
     }
 
