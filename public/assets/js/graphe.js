@@ -29,11 +29,11 @@ btn_envoyer.addEventListener("click", (event) => {
                     datasets: [{
                         label: 'Montant en € gagné par service',
                         data: arrayValeur,
-                        backgroundColor: '#F09819',
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
                         borderWidth: 1,
                         borderColor: '#777',
                         hoverBorderwidth: 4,
-                        hoverBorderColor: '#000'
+                        hoverBorderColor: 'grey'
                     }]
                 },
                 options: {
@@ -103,30 +103,30 @@ btn_envoyer.addEventListener("click", (event) => {
             
             let container2 = document.getElementById('container2');
             while (container2.hasChildNodes()) {
-                container2.removeChild(container.lastChild);
+                container2.removeChild(container2.lastChild);
             }
             let myChart2 = document.createElement('canvas');
             container2.appendChild(myChart2);
             myChart2.id = "myChart2";
 
             let servicesChart2 = new Chart(myChart2, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: arrayMois,
                     datasets: [{
                         label: 'Nombre de service par mois',
                         data: arrayPrestations,
-                        backgroundColor: '#F09819',
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
                         borderWidth: 1,
                         borderColor: '#777',
                         hoverBorderwidth: 4,
-                        hoverBorderColor: '#000'
+                        hoverBorderColor: 'grey'
                     }]
                 },
                 options: {
                     title: {
                         display: true,
-                        text: 'Nombre de service par mois pendant un an',
+                        text: 'Nombre de services par mois pendant un an',
                         fontSize: 20
                     },
                     legend: {
