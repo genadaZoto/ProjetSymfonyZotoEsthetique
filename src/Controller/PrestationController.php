@@ -241,8 +241,28 @@ class PrestationController extends AbstractController
      */
     public function afficherGrapheTraitement(Request $request)
     {
-        $year = $request->request->get('year');
+        // $year = $request->request->get('year');
        
+        // $em = $this->getDoctrine()->getManager();
+        // $query = $em->createQuery("SELECT service.id, service.nom FROM App\Entity\Service service");
+        // $resultat = $query->getResult();
+
+        // $dateDebut = $year.'-01-01';
+        // $dateFin = $year.'-12-31';
+
+        // $vars = [];
+        // foreach($resultat as $value){
+        //     $query1 = $em->createQuery("SELECT SUM(prestation.prixService) FROM App\Entity\Prestation prestation JOIN prestation.service service WHERE service.id = :idService AND prestation.datePrestation BETWEEN :dateDebut AND :dateFin ");
+        //     $query1->setParameter('dateDebut', $dateDebut);
+        //     $query1->setParameter('dateFin', $dateFin);
+        //     $query1->setParameter('idService', $value['id']);
+        //     $resultat1 = $query1->getArrayResult();
+        //     $vars[$value['nom']] = $resultat1[0][1];
+        // }
+
+        $year = $request->request->get('year');
+
+        // creer un array des services
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery("SELECT service.id, service.nom FROM App\Entity\Service service");
         $resultat = $query->getResult();
@@ -250,16 +270,30 @@ class PrestationController extends AbstractController
         $dateDebut = $year.'-01-01';
         $dateFin = $year.'-12-31';
 
-        $vars = [];
+        // creer l'array avec le montant de chaque service pour un an.
+        $montant = [];
         foreach($resultat as $value){
             $query1 = $em->createQuery("SELECT SUM(prestation.prixService) FROM App\Entity\Prestation prestation JOIN prestation.service service WHERE service.id = :idService AND prestation.datePrestation BETWEEN :dateDebut AND :dateFin ");
             $query1->setParameter('dateDebut', $dateDebut);
             $query1->setParameter('dateFin', $dateFin);
             $query1->setParameter('idService', $value['id']);
             $resultat1 = $query1->getArrayResult();
-            $vars[$value['nom']] = $resultat1[0][1];
+            $montant[$value['nom']] = $resultat1[0][1];
         }
        
+        
+        // creer l'array avec le nombre de prestations pendant chaque mois d'un an.
+        
+        $query2 = $em->createQuery("SELECT MONTH(prestation.datePrestation) as mois, COUNT(prestation) as nombres FROM App\Entity\Prestation prestation  WHERE YEAR(prestation.datePrestation) = :year GROUP BY mois");
+        $query2->setParameter('year', $year);
+        $resultat2 = $query2->getArrayResult();
+        $parMois = $resultat2;
+
+        $vars['parMois'] = $parMois;
+        $vars['montant'] = $montant;
+           
         return new JsonResponse($vars);
     }
+
+
 }
