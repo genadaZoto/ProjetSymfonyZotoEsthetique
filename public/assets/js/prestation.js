@@ -14,7 +14,7 @@ btn_envoyer.addEventListener ("click", (event) => {
         
         let contenu = document.getElementById('contenu');
         contenu.innerHTML="";
-        if(arrayPrestations.length == 0){
+        if(arrayPrestations.length === 0){
             let msg = document.createElement('div');
             msg.innerText = "Il n'y a pas de prestations pour la periode rechercher!"
             contenu.appendChild(msg);

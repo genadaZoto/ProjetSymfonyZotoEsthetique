@@ -16,7 +16,7 @@ btn_envoyer.addEventListener("click", (event)=>{
         let contenu = document.getElementById('contenu');
         contenu.innerHTML="";
 
-        if(arrayClient.length == 0){
+        if(arrayClient.length === 0){
             let msg = document.createElement('div');
             msg.innerText = "Il n'y a pas encore de photo pour ce client!"
             contenu.appendChild(msg);
