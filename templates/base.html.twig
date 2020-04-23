@@ -25,7 +25,7 @@
     <div class="sideNav" id="sideNav">
 	
       <!-- Nav Item - Title-->
-      <a href="/"><span class="title">Zoto <i class="fas fa-spa"></i> Esthetic</span></a>
+      <a href="/"><span class="title">Zoto <i class="fas fa-spa"></i>Esthetic</span></a>
 		</br>
 		
      
@@ -73,6 +73,9 @@
 <ul class="topNav">
 	
 	<li>
+		{% if is_granted('ROLE_ADMIN') %}
+		
+		 {% endif %}
 		{% if app.user %}
 			<div class="mb-3">
 				Hello,

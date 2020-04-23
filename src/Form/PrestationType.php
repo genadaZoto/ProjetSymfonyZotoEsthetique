@@ -34,8 +34,8 @@ class PrestationType extends AbstractType
                     'query_builder'=> function (ClientRepository $cr){
                         return $cr->createQueryBuilder('u')->select('u');
                     },
-                    'choice_label'=> function ($x) {
-                        return ($x->getPrenom());
+                    'choice_label'=> function (Client $x) {
+                        return $x->getPrenom(). ' '. $x->getNom() ;
                     }
                 ])
                 ->add('service', EntityType::class,[

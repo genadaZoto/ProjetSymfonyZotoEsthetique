@@ -189,11 +189,12 @@ tr:nth-child(even) {
 .meteo{
     background-image: url('/assets/images/centre2.jpg'); 
     background-repeat: no-repeat;
+    
     display: flex;
     flex-direction: row;
     color: #8f5907;
     font-weight: bolder;
-    height: fit-content;
+    height: 400px;
 }
 
 .imgMeteo{
