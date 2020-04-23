@@ -25,8 +25,8 @@ class PhotoType extends AbstractType
                     'query_builder'=> function (ClientRepository $cr){
                         return $cr->createQueryBuilder('u')->select('u');
                     },
-                'choice_label'=> function ($x) {
-                    return ($x->getPrenom());
+                'choice_label'=> function (Client $c) {
+                    return $c->getPrenom() . ' ' . $c->getNom();
                 }
             ]);
 

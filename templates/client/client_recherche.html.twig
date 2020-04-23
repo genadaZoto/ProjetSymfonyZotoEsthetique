@@ -14,7 +14,7 @@
     <label>Selectionez le prenom:</label>
     <select name="clientId">
         {% for valeur in clients %}
-        <option value = {{ valeur.id }} >{{ valeur.prenom | capitalize}} </option>
+        <option value = {{ valeur.id }} >{{ valeur.prenom  | capitalize}} {{ valeur.nom  | capitalize}}  </option>
         {% endfor %}
     </select>
     <button type="submit">Submit</button>  

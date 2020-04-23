@@ -1,3 +1,4 @@
+
 .pagination{
     list-style: none;
     padding: 15px;;
@@ -26,15 +27,15 @@ h2{
 }
 
 .title {
-    font-size: 150%;
+    font-size: 100%;
     color: #8f5907 ;
-    font-family: 'Chicle', cursive;
+    font-family: 'Playfair Display', serif;
     font-weight: 1000;
 }
 .title2 {
-    font-size: 350%;
+    font-size: 250%;
     color: #8f5907 ;
-    font-family: 'Chicle', cursive;
+    font-family: 'Playfair Display', serif;
     font-weight: 1000;
 }
 .space{
@@ -68,8 +69,8 @@ input[type=submit]:hover {
 }
 
 .sideNav {
-    height: 90%;
-    width: 180px;
+    height: 100%;
+    width: 150px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -83,7 +84,6 @@ input[type=submit]:hover {
 .sideNav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 16px;
     color: black;
     display: block;
 }
@@ -94,12 +94,13 @@ input[type=submit]:hover {
     -webkit-text-fill-color: transparent;
     font-weight: 800;
 }
+
 .line{
     color:1px solid rgba(255,255,255,.15);
 }
 
 .main{
-    padding: 0 15% 0 20%;
+    padding: 0 10% 0 20%;
 }
 .topNav {
     overflow: hidden;
@@ -190,9 +191,9 @@ tr:nth-child(even) {
     background-repeat: no-repeat;
     display: flex;
     flex-direction: row;
-    font-size: larger;
     color: #8f5907;
     font-weight: bolder;
+    height: fit-content;
 }
 
 .imgMeteo{
@@ -248,4 +249,6 @@ form, .infoClient, .meteo{
     color:rgba(255, 145, 0, 0.808);
     padding-left: 1%;
 }
+
+
 

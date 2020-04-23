@@ -11,7 +11,8 @@
 			<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
       		<link href="https://fonts.googleapis.com/css2?family=Chicle&family=Fascinate&family=Modak&display=swap" rel="stylesheet">
-		{% endblock %}
+			<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+			{% endblock %}
 	</head>
 
 
@@ -21,11 +22,12 @@
 		<!-- Nav Item - Pages Collapse Menu -->
 
     <!-- Nav Item - User -->
-    <div class="sideNav">
-
+    <div class="sideNav" id="sideNav">
+	
       <!-- Nav Item - Title-->
       <a href="/"><span class="title">Zoto <i class="fas fa-spa"></i> Esthetic</span></a>
-    	</br>
+		</br>
+		
      
 			<!-- Nav Item - User-->
       <span class="navItem"><i class="fas fa-user"></i>User</span>
@@ -38,34 +40,38 @@
 
 		<!-- Nav Item - Service-->
 			<span class="navItem"> <i class="fas fa-procedures"></i>Service</span>
-			<a href="/service/insert">Inserer Service</a>
-			<a href="/service/afficher">Afficher les Services</a>
+			<a href="/service/insert">Inserer</a>
+			<a href="/service/afficher">Afficher</a>
 		<!-- Divider -->
 		</br>
 		
 
 		<!-- Nav Item - Client-->
 			<span class="navItem"><i class="fas fa-portrait"></i>Client</span>
-			<a href="/client/insert">Inserer Client</a>
-			<a href="/client/afficher">Afficher les Clients</a>
+			<a href="/client/insert">Inserer</a>
+			<a href="/client/afficher">Afficher</a>
 			<a href="/photo/upload">Upload photo</a>
-			<a href="/client/recherche/ajax">Rechercher Client</a>
+			<a href="/client/recherche/ajax">Rechercher</a>
 		<!-- Divider -->
 		</br>
 
 		<!-- Nav Item - Prestation-->
 			<span class="navItem"> <i class="far fa-calendar-alt"></i>Prestation</span>
-			<a href="/prestation/insert">Inserer Prestation</a>
-			<a href="/prestation/afficher">Afficher les Prestations</a>
-			<a href="/prestation/recherche/ajax">Rechercher Prestation</a>
-			<a href="/prestation/graphe">Graphe Prestation</a>
+			<a href="/prestation/insert">Inserer</a>
+			<a href="/prestation/afficher">Afficher</a>
+			<a href="/prestation/recherche/ajax">Rechercher</a>
+			<a href="/prestation/graphe">Graphe</a>
+		
   </div>
+
+
 
 		
 <!-- End of Sidebar -->
 
 <!-- Topbar -->
 <ul class="topNav">
+	
 	<li>
 		{% if app.user %}
 			<div class="mb-3">
@@ -79,7 +85,18 @@
 <!-- End of Topbar -->
 
 {% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+<script>
+function openNav() {
+  document.getElementById("sideNav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("sideNav").style.width = "0";
+}
+</script>
+
+{% endblock %}
 
 </body>
 
