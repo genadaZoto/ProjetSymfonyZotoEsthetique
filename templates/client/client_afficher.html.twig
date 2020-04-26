@@ -23,7 +23,7 @@
         <th>Edit</th>
     </tr>
     {% set count = 1 %}
-    {% for valeur in clients %}
+    {% for valeur in client %}
    
     <tr>
         <td>{{ count }}</td>
@@ -42,6 +42,10 @@
     {% endfor %}
 </table>
 </form>
+
+<div class="pagination">
+    {{ knp_pagination_render (client) }}
+</div>
 
 </div>
 {% endblock %}

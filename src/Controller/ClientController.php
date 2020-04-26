@@ -6,6 +6,7 @@ use App\Entity\Photo;
 use App\Entity\Client;
 use App\Form\ClientType;
 use App\Form\ClientPrenomType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -45,13 +46,18 @@ class ClientController extends AbstractController
     /**
      * @Route("/client/afficher", name="client_afficher")
      */
-    public function clientAfficher(){
-        $em = $this->getDoctrine()->getManager();
-        $clientRepo = $em->getRepository(Client::class);
-        $clients = $clientRepo->findAll();
-        $vars = ['clients'=>$clients];
+    public function clientAfficher(PaginatorInterface $paginator, Request $request){
 
-        return $this->render("client/client_afficher.html.twig", $vars);
+        $client = $this->getDoctrine()->getRepository(Client::class)->findAll();
+        $numeroPage = $request->query->getInt('page', 1);
+
+        $paginationClient = $paginator->paginate(
+            $client,
+            $numeroPage,
+            10
+        );
+
+        return $this->render("client/client_afficher.html.twig", ['client' => $paginationClient]);
     }
 
     /**
