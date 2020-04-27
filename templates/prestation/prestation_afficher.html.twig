@@ -35,10 +35,12 @@
         <!-- Modal content -->
         <div class="modal-content">
           <span class="close">&times;</span>
-          <form  action="{{ path ('traitementPrestation_deleteEdit') }}" method="POST">
-            <h3>Êtes-vous sûr ?</h3>
-            <button type="submit" id="confirmDelete" name="delete" value="{{ valeur.id }}">Oui</button>
+            <form  action="{{ path ('traitementPrestation_deleteEdit') }}" method="POST">
+                <h3>Êtes-vous sûr ?</h3>
+                <button type="submit" id="confirmDelete" name="delete" value="{{ valeur.id }}">Oui</button>
             </form>
+                
+            
         </div>
     </div>
 

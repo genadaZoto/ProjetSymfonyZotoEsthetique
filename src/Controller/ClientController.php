@@ -48,7 +48,10 @@ class ClientController extends AbstractController
      */
     public function clientAfficher(PaginatorInterface $paginator, Request $request){
 
-        $client = $this->getDoctrine()->getRepository(Client::class)->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery ('SELECT client FROM App\Entity\Client client ORDER BY client.prenom ASC');
+        $client = $query->getResult();
+
         $numeroPage = $request->query->getInt('page', 1);
 
         $paginationClient = $paginator->paginate(
