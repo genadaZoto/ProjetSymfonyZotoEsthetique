@@ -114,36 +114,38 @@ class ClientController extends AbstractController
         return $this->redirectToRoute("client_afficher");
 
     }
-    /**
-     * @Route("/client/recherche", name="client_recherche")
-     */
-    public function clientRecherche ()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $clients = $em->getRepository(Client::class)->findAll();
-        $vars = ["clients"=>$clients];
 
-          return $this->render('client/client_recherche.html.twig', $vars);
+    /////////////////recherche cient sans ajax//////////////////////////////////////////
+    // /**
+    //  * @Route("/client/recherche", name="client_recherche")
+    //  */
+    // public function clientRecherche ()
+    // {
+    //     $em = $this->getDoctrine()->getManager();
+    //     $clients = $em->getRepository(Client::class)->findAll();
+    //     $vars = ["clients"=>$clients];
 
-    }
+    //       return $this->render('client/client_recherche.html.twig', $vars);
 
-    /**
-     * @Route("/client/recherche/traitement", name="traitement_rechercheClient")
-     */
-    public function rechercheClientTraitement(Request $request)
-    {
-        $clientId = $request->request->get('clientId');
+    // }
+
+    // /**
+    //  * @Route("/client/recherche/traitement", name="traitement_rechercheClient")
+    //  */
+    // public function rechercheClientTraitement(Request $request)
+    // {
+    //     $clientId = $request->request->get('clientId');
         
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery ('SELECT photo,client FROM App\Entity\Photo photo JOIN photo.client client WHERE client.id = :input');
-        $query->setParameter('input', $clientId );
+    //     $em = $this->getDoctrine()->getManager();
+    //     $query = $em->createQuery ('SELECT photo,client FROM App\Entity\Photo photo JOIN photo.client client WHERE client.id = :input');
+    //     $query->setParameter('input', $clientId );
 
-        $client = $query->getResult();
-        $vars=['client'=>$client];
-        //dd($vars);
-        return $this->render('client/client_rechercheTraitement.html.twig', $vars);
+    //     $client = $query->getResult();
+    //     $vars=['client'=>$client];
+    //     //dd($vars);
+    //     return $this->render('client/client_rechercheTraitement.html.twig', $vars);
       
-    }
+    // }
     /**
      * @Route("/client/delete/photo",options={"expose"=true}, name="delete_photo")
      */

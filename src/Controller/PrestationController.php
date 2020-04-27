@@ -57,7 +57,7 @@ class PrestationController extends AbstractController
         $paginationPrestation = $paginator->paginate(
             $prestation,
             $numeroPage,
-            10
+            12
         );
         return $this->render('prestation/prestation_afficher.html.twig', ['prestations' => $paginationPrestation]);
 
