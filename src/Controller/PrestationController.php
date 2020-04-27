@@ -51,7 +51,10 @@ class PrestationController extends AbstractController
     public function prestationAfficher(PaginatorInterface $paginator, Request $request)
     {
 
-        $prestation = $this->getDoctrine()->getRepository(Prestation::class)->findAll();
+        $em = $this->getDoctrine()->getManager();
+
+        $query = $em->createQuery ('SELECT prestation, service, client FROM App\Entity\Prestation prestation JOIN prestation.service service JOIN prestation.client client ORDER BY prestation.datePrestation DESC');
+        $prestation = $query->getResult();
         $numeroPage = $request->query->getInt('page', 1);
 
         $paginationPrestation = $paginator->paginate(
@@ -61,14 +64,6 @@ class PrestationController extends AbstractController
         );
         return $this->render('prestation/prestation_afficher.html.twig', ['prestations' => $paginationPrestation]);
 
-        ////////////sans pagination////////////////
-        // $em = $this->getDoctrine()->getManager();
-
-        // $query = $em->createQuery ('SELECT prestation, service, client FROM App\Entity\Prestation prestation JOIN prestation.service service JOIN prestation.client client ORDER BY prestation.datePrestation DESC');
-        // $prestation = $query->getResult();
-
-        // $vars= ['prestations'=>$prestation];
-        // return $this->render("prestation/prestation_afficher.html.twig", $vars);
     }
 
     /**
@@ -76,19 +71,16 @@ class PrestationController extends AbstractController
      */
     public function prestationDelete(Request $request)
     {
-        $valButtonEdit = $request->request->get('edit');
+      
         $valButtonDelete = $request->request->get('delete');
-
-        $id = $valButtonDelete | $valButtonEdit;
-
+        dd($valButtonDelete);
         $em = $this->getDoctrine()->getManager();
-        $prestation = $em->getRepository(Prestation::class)->findOneBy(array("id" => $id));
+        $prestation = $em->getRepository(Prestation::class)->findOneBy(array("id" => $valButtonDelete));
+        $em->remove($prestation);
+        $em->flush();
 
-        if ($valButtonDelete != null) {
-            $em->remove($prestation);
-            $em->flush();
-            return $this->redirectToRoute("prestation_afficher");
-        } 
+        return $this->redirectToRoute("prestation_afficher");
+        
     }
 
 
